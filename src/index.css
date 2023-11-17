@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btnlistSidebar {
+  @apply px-4 py-2 my-2 bg-white  flex rounded-[12px] gap-2;
+}
+.asidebarCard {
+  @apply w-[290px] flex flex-col gap-5 p-10  rounded-2xl;
+}
+.xlBoldFont {
+  @apply text-xl font-bold;
+}
