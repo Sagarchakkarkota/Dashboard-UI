@@ -6,7 +6,7 @@ import SideBar from "../SideBar";
 
 const Home = () => {
   return (
-    <div className="flex  w-full ">
+    <div className="flex">
       <SideBar /> {/* taken 240px */}
       <div className=" bg-gradient-to-l from-[#F5D300] to-gray-200 w-full ">
         <Navbar />

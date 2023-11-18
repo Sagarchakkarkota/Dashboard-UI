@@ -29,7 +29,7 @@ const MainSection = () => {
   return (
     <div className="  p-5 ">
       {/* cart start */}
-      <div className=" flex  lg:items-center justify-evenly gap-2 lg:flex-wrap">
+      <div className=" flex  lg:items-center justify-start   gap-2 lg:flex-wrap">
         {cartItems.map(({ bgcolor, title, number, description }, index) => (
           <div key={index}>
             <Cart
@@ -40,22 +40,10 @@ const MainSection = () => {
             />
           </div>
         ))}
-        {/* {cartItems
-          .slice(0, 2)
-          .map(({ bgcolor, title, number, description }, index) => (
-            <div key={index} className="minlg:hidden">
-              <Cart
-                bgcolor={bgcolor}
-                title={title}
-                number={number}
-                month={description}
-              />
-            </div>
-          ))} */}
       </div>
       {/* cart end */}
       {/* sales analysis start */}
-      <div className="flex  lg:flex-col flex-row justify-evenly my-4 w-full">
+      <div className="flex   flex-row  lg:justify-between  my-4 w-full">
         <div className=" bg-white p-3 rounded-3xl flex flex-col justify-between">
           <div className="flex justify-between ">
             <p className="xlBoldFont">Regular Sell</p>
@@ -69,14 +57,14 @@ const MainSection = () => {
           />
         </div>
 
-        <div className="w-[50%] display flex flex-col justify-between px-16 py-[60px] gap-5">
-          <div>
+        <div className="display flex flex-col justify-between mx-auto px-[5px] py-[60px] gap-5 lg:px-1 lg:[10px] ">
+          <div className="flex flex-col items-center">
             <h1 className="xlBoldFont whitespace-nowrap ">More Analysis</h1>
             <p className="text-md text-gray-500 whitespace-nowrap">
               There are more to view
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-center">
             <SymbolButton
               symbol={<VscGraph />}
               name="Store Sell Ratio"

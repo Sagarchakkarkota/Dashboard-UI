@@ -46,7 +46,7 @@ const Users = () => {
         {isLoading ? (
           " ...Loading"
         ) : (
-          <div className="h-screen w-full p-4   bg-gradient-to-br from-[#A5D8F3] to-[#F5D300]">
+          <div className=" w-full p-4   bg-gradient-to-br from-[#A5D8F3] to-[#F5D300]">
             <div className="overflow-x-auto rounded-2xl p-6 md:p-10 ">
               <h1 className="xlBoldFont text-center mb-4 md:mb-6">User Data</h1>
 

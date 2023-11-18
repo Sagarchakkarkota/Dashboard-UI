@@ -5,11 +5,11 @@ import SideBarComp from "./SideBarComp";
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
-    <div className="w-[240px]  bg-gradient-to-br from-[#08F7FE] to-white ">
-      <div className="minlg:hidden sticky top-0 ">
+    <>
+      {/* <div className="minlg:hidden   sticky top-0 ">
         {!showSideBar && (
           <div
-            className="p-6 "
+            className="p-4  absolute top-4  "
             onClick={() => {
               setShowSideBar(true);
             }}
@@ -18,11 +18,9 @@ const SideBar = () => {
           </div>
         )}
         {showSideBar && <SideBarComp setShowSideBar={setShowSideBar} />}
-      </div>
-      <div className="lg:hidden sticky top-0">
-        <SideBarComp />
-      </div>
-    </div>
+      </div> */}
+      <SideBarComp />
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import Users from "./Pages/Dashboard/users/Users";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div>
+    <div className="border-[2px] border-red-500">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
