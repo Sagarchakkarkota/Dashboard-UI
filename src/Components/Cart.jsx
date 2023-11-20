@@ -6,7 +6,7 @@ const Cart = ({ title, month, number, bgcolor }) => {
   };
   return (
     <div
-      className="xl:w-[180px] w-[220px]   h-[130px]  rounded-lg p-2 flex flex-col  gap-6 mx-2 "
+      className="xl:w-[180px] w-[230px]   h-[130px]  rounded-lg p-2 flex flex-col  gap-6 mx-2 "
       style={divStyle}
     >
       <h4 className="text-sm ">{title}</h4>

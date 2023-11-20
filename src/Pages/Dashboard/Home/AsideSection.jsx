@@ -7,7 +7,7 @@ const AsideSection = () => {
   const getData = useSelector((state) => state.member.totalMembers);
 
   return (
-    <div className="p-1 flex flex-col gap-2 ">
+    <div className="py-8 flex flex-col gap-2 ">
       {/* card 1 start */}
       <FirstCart />
       {/* card 1 end */}

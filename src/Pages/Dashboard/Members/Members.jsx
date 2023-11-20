@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ListTeamMember from "../Home/components/ListTeamMember";
 import ThirdCart from "../Home/asidecarts/ThirdCart";
 import SideBar from "../SideBar";
 
@@ -23,22 +21,22 @@ const Members = () => {
     <div className="flex">
       <SideBar />
 
-      <div className="flex ">
+      <div className="flex w-full">
         {/* main start */}
-        <div className=" p-5 w-full ">
+        <div className=" p-4 w-full py-16 ">
           <div
-            className="w-[600px] h-[400px] bg-contain  bg-center bg-no-repeat  backdrop-blur-lg relative p-5 rounded-md border border-gray-300"
+            className="xl:w-[370px]  xl:h-[250px] w-[600px] h-[400px] bg-contain  bg-center bg-no-repeat  backdrop-blur-lg relative p-5 rounded-md border border-gray-300"
             style={{
               backgroundImage: `url(${URL.createObjectURL(profilepicture)})`,
             }}
           >
             <img
               src={URL.createObjectURL(profilepicture)}
-              className="h-[200px] w-[200px]  rounded-[50px]  absolute bottom-0 border border-gray-300"
+              className="xl:h-[100px] h-[200px] xl:w-[100px] w-[200px]  rounded-[50px]  absolute bottom-0 border border-gray-300"
               alt=""
             />
           </div>
-          <div className="p-5 bg-gray-300 rounded-b-md  bg-gradient-to-br from-blue-300 to-white w-[600px]  ">
+          <div className="p-5 bg-gray-300 rounded-b-md  bg-gradient-to-br from-blue-300 to-white w-[600px] xl:w-[370px]  ">
             <h1 className="xlBoldFont ">Name : {name}</h1>
             <h3 className="xlBoldFont">Occupation : {occupation}</h3>
           </div>

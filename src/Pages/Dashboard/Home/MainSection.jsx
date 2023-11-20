@@ -27,9 +27,9 @@ const MainSection = () => {
     },
   ];
   return (
-    <div className="  p-5 ">
+    <div className="py-8 xl:px-4">
       {/* cart start */}
-      <div className=" flex  lg:items-center justify-start   gap-2 lg:flex-wrap">
+      <div className=" flex  xl: justify-start   gap-2  xl:flex-wrap">
         {cartItems.map(({ bgcolor, title, number, description }, index) => (
           <div key={index}>
             <Cart
@@ -43,7 +43,7 @@ const MainSection = () => {
       </div>
       {/* cart end */}
       {/* sales analysis start */}
-      <div className="flex   flex-row  lg:justify-between  my-4 w-full">
+      <div className="flex   flex-row  lg:flex-col   my-4 w-full">
         <div className=" bg-white p-3 rounded-3xl flex flex-col justify-between">
           <div className="flex justify-between ">
             <p className="xlBoldFont">Regular Sell</p>

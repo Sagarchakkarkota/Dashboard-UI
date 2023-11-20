@@ -8,15 +8,15 @@ const Users = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 5;
 
-  const headers = [
-    " Name",
-    "User Name",
-    "Mail Id",
-    "Phone",
-    "Website",
-    "Address",
-    "Company",
-  ];
+  // const headers = [
+  //   " Name",
+  //   "User Name",
+  //   "Mail Id",
+  //   "Phone",
+  //   "Website",
+  //   "Address",
+  //   "Company",
+  // ];
   const paginate = (data, pageNumber, pageSize) => {
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;
@@ -40,25 +40,32 @@ const Users = () => {
   const paginatedData = paginate(data, pageNumber, pageSize);
 
   return (
-    <div className="flex">
+    <div className="flex lg:h-screen  bg-gradient-to-br from-[#A5D8F3] to-[#F5D300] ">
+      {/* <div className="flex "> */}
       <SideBar />
       <div>
         {isLoading ? (
           " ...Loading"
         ) : (
-          <div className=" w-full p-4   bg-gradient-to-br from-[#A5D8F3] to-[#F5D300]">
-            <div className="overflow-x-auto rounded-2xl p-6 md:p-10 ">
+          <div className=" w-full p-4  ">
+            {/* Table start.... */}
+            <div className=" w-full">
               <h1 className="xlBoldFont text-center mb-4 md:mb-6">User Data</h1>
 
-              <div className=" my-4 md:my-6 ">
-                <div className="bg-[#f8e0f7] grid grid-cols-7 md:grid-cols-8 gap-2 md:gap-4 px-2 md:px-6 py-3 md:py-4 text-sm text-gray-900 border-b border-gray-400 rounded-t-md">
-                  {headers.map((header, index) => (
-                    <div key={index}>
-                      <div className="flex justify-center">{header}</div>
-                    </div>
-                  ))}
-                </div>
+              <div className="w-full flex ">
+                {/* Table header start.... */}
+                <div className="tableBody ">Name</div>
+                <div className="tableBody ">User Name</div>
+                <div className="tableBody ">Mail Id</div>
+                <div className="tableBody ">Phone</div>
+                <div className="tableBody ">Website</div>
+                <div className="tableBody ">Address</div>
+                <div className="tableBody ">Company</div>
+              </div>
+              {/* Table header end.... */}
 
+              {/* Table body start */}
+              <div className="w-full flex flex-col xl:text-xs">
                 {paginatedData?.map(
                   ({
                     id,
@@ -70,35 +77,47 @@ const Users = () => {
                     address,
                     company,
                   }) => (
-                    <div
-                      key={id}
-                      className="bg-[#FFDEF3] grid grid-cols-7 md:grid-cols-8 gap-2 md:gap-4 px-2 md:px-6 py-3 md:py-4 text-sm text-gray-900 "
-                    >
-                      <div className="flex justify-center">{name}</div>
-                      <div className="flex justify-center ">{username}</div>
-                      <div className="flex justify-center flex-shrink break-all ">
+                    <div key={id} className="w-full flex flex-row">
+                      <div className="tableBody">{name}</div>
+                      <div className="tableBody">{username}</div>
+                      <div className="tableBody flex-shrink break-all  ">
                         {email}
                       </div>
-                      <div className="flex justify-center">{phone}</div>
-                      <div className="flex justify-center">{website}</div>
-                      <div className="flex justify-center">
-                        <div>
-                          <p className="flex flex-wrap">
-                            {address.city}, {address.street}, {address.suite},{" "}
-                            {address.zipcode},{/* {address.geo}, */}
-                          </p>
+                      <div className="tableBody">{phone}</div>
+                      <div className="tableBody">{website}</div>
+
+                      <div className="tableBody flex-wrap ">
+                        <div className="w-full flex flex-wrap">
+                          {address.city}
+                        </div>
+
+                        <div className=" w-full flex flex-wrap">
+                          {address.street}
+                        </div>
+                        <div className=" w-full flex flex-wrap">
+                          {address.suite}
+                        </div>
+                        <div className=" w-full flex flex-wrap">
+                          {address.zipcode}
                         </div>
                       </div>
-                      <div className="flex justify-center ">
-                        <div className="flex flex-wrap">
-                          {company.bs},{company.name}
+                      <div className="tableBody flex-wrap">
+                        <div className="w-full flex flex-wrap">
+                          {company.bs}{" "}
+                        </div>
+                        <div className="w-full flex flex-wrap">
+                          {company.name}{" "}
                         </div>
                       </div>
                     </div>
                   )
                 )}
               </div>
+
+              {/* Table body end */}
             </div>
+            {/* Table end.... */}
+            {/* Next and Prev Button start...... */}
             <div className="w-full flex justify-center">
               {" "}
               <button
@@ -119,6 +138,7 @@ const Users = () => {
                 Next
               </button>
             </div>
+            {/* Next and Prev Button end...... */}
           </div>
         )}
       </div>

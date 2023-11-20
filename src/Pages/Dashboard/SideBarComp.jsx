@@ -8,11 +8,11 @@ import { IoMdSettings } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import profilepic from "../../assets/profile.jpg";
 import { Link } from "react-router-dom";
-const SideBarComp = ({ setShowSideBar }) => {
+const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
     { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },
     { id: 2, icon: FcStatistics, name: "Statistics", path: "/" },
-    { id: 3, icon: GrTransaction, name: "Transaction", path: "/" },
+    { id: 3, icon: GrTransaction, name: "Transaction", path: "/trans" },
     { id: 4, icon: RiTeamFill, name: "Users", path: "/users" },
     { id: 5, icon: BsFileBarGraph, name: "Sell Reports", path: "/" },
     { id: 6, icon: IoMdSettings, name: "Settings", path: "/" },
@@ -47,7 +47,9 @@ const SideBarComp = ({ setShowSideBar }) => {
   };
 
   return (
-    <div className="   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-br from-[#08F7FE] to-white ">
+    <div
+      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-br from-[#08F7FE] to-white`}
+    >
       <div>
         <div
           className="minlg:hidden absolute top-[25px] right-2"

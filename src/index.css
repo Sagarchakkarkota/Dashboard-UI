@@ -11,3 +11,6 @@
 .xlBoldFont {
   @apply text-xl font-bold;
 }
+.tableBody {
+  @apply flex justify-start flex-1 p-1;
+}
