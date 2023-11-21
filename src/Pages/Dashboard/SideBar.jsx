@@ -7,7 +7,7 @@ const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <>
-      <div className="minlg:hidden    ">
+      <div className="minlg:hidden ">
         {!showSideBar && (
           <div
             className="p-4  absolute top-4 z-10  "
@@ -21,12 +21,13 @@ const SideBar = () => {
         {/* {showSideBar && ( */}
         <Transition
           show={showSideBar}
-          enter="transition-opacity duration-75"
-          enterFrom="opacity-50"
-          enterTo="opacity-100"
-          leave="transition-opacity duration-150"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+          className="absolute top-0 left-0"
+          enter="transition ease-in-out duration-1000 transform"
+          enterFrom="translate-x-[-240px]"
+          enterTo="translate-x-0"
+          leave="transition ease-in-out duration-300 transform"
+          leaveFrom="translate-x-0"
+          leaveTo="translate-x-[-240px]"
         >
           <SideBarComp
             setShowSideBar={setShowSideBar}

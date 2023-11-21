@@ -8,6 +8,8 @@ import { IoMdSettings } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import profilepic from "../../assets/profile.jpg";
 import { Link } from "react-router-dom";
+import { Disclosure } from "@headlessui/react";
+import { RiArrowDropDownLine } from "react-icons/ri";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
     { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },
@@ -48,7 +50,7 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
 
   return (
     <div
-      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-br from-[#08F7FE] to-white`}
+      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-br from-[#08F7FE] to-white `}
     >
       <div>
         <div
@@ -64,26 +66,43 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
             Niond
           </h1>
         </Link>
-        <ul>
-          {listitems.map(({ path, id, name, icon: IconComponent }) => {
-            return (
-              <Link to={path} key={id}>
-                <li
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, id)}
-                  onDragOver={(e) => handleDragOver(e)}
-                  onDrop={(e) => handleDrop(e, id)}
-                  className="w-[200px] btnlistSidebar hover:bg-button_green cursor-pointer"
-                >
-                  <span className="flex items-center">
-                    <IconComponent />
-                  </span>
-                  <span className="whitespace-nowrap">{name}</span>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
+        <Disclosure>
+          {({ open }) => (
+            /* Use the `open` state to conditionally change the direction of an icon. */
+            <>
+              <Disclosure.Button>
+                <div className="flex justify-between items-center w-[200px] btnlistSidebar hover:bg-gray-100 cursor-pointer text-xl font-bold">
+                  <h1 className="">{open ? "Collapse" : "Extend"}</h1>
+                  <RiArrowDropDownLine
+                    className={` ${open ? "rotate-180 transform" : ""} `}
+                  />
+                </div>
+              </Disclosure.Button>
+              <Disclosure.Panel>
+                <ul className="flex flex-col items-center">
+                  {listitems.map(({ path, id, name, icon: IconComponent }) => {
+                    return (
+                      <Link to={path} key={id}>
+                        <li
+                          draggable
+                          onDragStart={(e) => handleDragStart(e, id)}
+                          onDragOver={(e) => handleDragOver(e)}
+                          onDrop={(e) => handleDrop(e, id)}
+                          className="w-[180px] btnlistSidebar hover:bg-button_green cursor-pointer"
+                        >
+                          <span className="flex items-center">
+                            <IconComponent />
+                          </span>
+                          <span className="whitespace-nowrap">{name}</span>
+                        </li>
+                      </Link>
+                    );
+                  })}
+                </ul>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
       </div>
 
       <div className="w-full">
