@@ -4,27 +4,47 @@ import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
 import { setIsModal, setMembers } from "../MemberSlice";
 import { useDispatch } from "react-redux";
+// import { addMember } from "../../../../api/api";
+import { useMutation } from "@tanstack/react-query";
+import { addNewMember } from "../../../../api/api";
 const Modal = () => {
   const dispatch = useDispatch();
 
+const mutation=useMutation({
+  mutationFn:(mutateData)=>{
+    return addNewMember(mutateData)
+  }
+})
+
   const formik = useFormik({
     initialValues: {
+      id:new Date().getTime() ,
       name: "",
-      occupation: "",
-      profilepicture: "",
+      // occupation: "",
+      // profilepicture: "",
+      email: "",
+      gender: "",
+      status: "inactive"
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
-      occupation: Yup.string().required("Occupation is required"),
-      profilepicture: Yup.string().required("Profile picture is required"),
+      // occupation: Yup.string().required("Occupation is required"),
+      // profilepicture: Yup.string().required("Profile picture is required"),
+      email: Yup.string().required("Email is required"),
+      gender: Yup.string().required("Gender is required"),
+      status:Yup.string().required("Status is required eg.active/inactive")
     }),
+    
     onSubmit: (values) => {
+      const {id,name,email,gender,status}=values
+      // addMember({id:id,name:name, email:email, gender:gender, status:status})
+      mutation.mutate({id:id,name:name, email:email, gender:gender, status:status})
       dispatch(setMembers(values));
       formik.resetForm();
       dispatch(setIsModal(false));
     },
   });
-
+ 
   return (
     <div className="  fixed top-0 left-0 h-full w-full flex items-center justify-center  bg-gradient-to-br from-red-600 to-orange-400">
       <div className="absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -39,7 +59,7 @@ const Modal = () => {
         </button>
 
         <form onSubmit={formik.handleSubmit}>
-          <div className="h-[150px] w-[150px] bg-white  rounded-[80px] absolute top-[-110px] right-[110px]">
+          {/* <div className="h-[150px] w-[150px] bg-white  rounded-[80px] absolute top-[-110px] right-[110px]">
             {formik.values.profilepicture && (
               <img
                 src={URL.createObjectURL(formik.values.profilepicture)}
@@ -47,9 +67,9 @@ const Modal = () => {
                 className="profile-image h-[150px] w-[150px] rounded-[80px]"
               />
             )}
-          </div>
+          </div> */}
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <input
               type="file"
               name="profilepicture"
@@ -61,7 +81,7 @@ const Modal = () => {
                 formik.setFieldValue("profilepicture", file);
               }}
             />
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <label htmlFor="name" className="block font-medium">
@@ -79,8 +99,57 @@ const Modal = () => {
               <p className="text-red-500 text-xs mt-1">{formik.errors.name}</p>
             )}
           </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block font-medium">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="w-full p-2 border rounded-md"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
+            {formik.errors.name && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.email}</p>
+            )}
+          </div>
 
           <div className="mb-4">
+            <label htmlFor="gender" className="block font-medium">
+              Gender
+            </label>
+            <input
+              type="text"
+              id="gender"
+              name="gender"
+              className="w-full p-2 border rounded-md"
+              onChange={formik.handleChange}
+              value={formik.values.gender}
+            />
+            {formik.errors.name && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.gender}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="status" className="block font-medium">
+              Status
+            </label>
+            <input
+              type="text"
+              id="status"
+              name="status"
+              className="w-full p-2 border rounded-md"
+              onChange={formik.handleChange}
+              value={formik.values.status}
+            />
+            {formik.errors.name && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.status}</p>
+            )}
+          </div>
+
+          {/* <div className="mb-4">
             <label htmlFor="occupation" className="block font-medium">
               Occupation
             </label>
@@ -97,7 +166,7 @@ const Modal = () => {
                 {formik.errors.occupation}
               </p>
             )}
-          </div>
+          </div> */}
 
           <div className="text-right">
             <button

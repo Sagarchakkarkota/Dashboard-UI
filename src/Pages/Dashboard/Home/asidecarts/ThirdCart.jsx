@@ -4,20 +4,25 @@ import Modal from "../modal/AddMemberModal";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsModal } from "../MemberSlice";
 
+
 const ThirdCart = ({ getData }) => {
   const dispatch = useDispatch();
   const isModal = useSelector((state) => state.member.isModal);
+
+
+ 
   return (
-    <div className="asidebarCard bg-white">
+    <div className="asidebarCard bg-white h-[30%]">
       <h1 className="xlBoldFont">Team Member</h1>
-      <div>
-        {getData?.map(({ name, occupation, profilepicture }, index) => (
+      <div className="h-full overflow-y-scroll ">  
+    
+        {getData?.map(({ id,name, gender }) => (
           <ListTeamMember
-            key={index}
-            index={index}
-            profile={profilepicture}
+            key={id}
+            id={id}
+            // profile={profilepicture}
             name={name}
-            occupation={occupation}
+            gender={gender}
           />
         ))}
       </div>

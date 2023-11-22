@@ -2,12 +2,19 @@ import { useSelector } from "react-redux";
 import ThirdCart from "./asidecarts/ThirdCart";
 import FirstCart from "./asidecarts/FirstCart";
 import SecondCart from "./asidecarts/SecondCart";
+import { getMember } from "../../../api/api";
+import { useQuery } from "@tanstack/react-query";
 
 const AsideSection = () => {
-  const getData = useSelector((state) => state.member.totalMembers);
-
+  // const getData = useSelector((state) => state.member.totalMembers);
+  const { data:getData} = useQuery({
+      queryKey: ["member"],
+      queryFn: getMember,
+      staleTime: 10000,
+    });
+ 
   return (
-    <div className="py-8 flex flex-col gap-2 ">
+    <div className="py-8 flex flex-col gap-2  ">
       {/* card 1 start */}
       <FirstCart />
       {/* card 1 end */}
