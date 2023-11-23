@@ -46,7 +46,7 @@ const mutation=useMutation({
   });
  
   return (
-    <div className="  fixed top-0 left-0 h-full w-full flex items-center justify-center  bg-gradient-to-br from-red-600 to-orange-400">
+    <div className="  fixed z-20 top-0 left-0 h-full w-full flex items-center justify-center  bg-gradient-to-br from-gray-600 ">
       <div className="absolute w-full h-full bg-gray-900 opacity-50"></div>
       <div className="z-50 bg-blue-200 rounded-lg shadow-lg p-4 w-96 relative">
         <h2 className="text-xl font-semibold mb-4">Add Member</h2>

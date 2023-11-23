@@ -1,25 +1,36 @@
-import React from "react";
+import { useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import MemberProfile from "./MemberProfile";
+// import MemberProfile from "./MemberProfile";
 import { Link } from "react-router-dom";
+import { FaRegEdit } from "react-icons/fa";
+import { AiTwotoneDelete } from "react-icons/ai";
+const ListTeamMember = ({ value,handleEdit,handleDelete}) => {
+  const [show,setShow]=useState(false)
 
-const ListTeamMember = ({  id,name, gender }) => {
-
+const { id,name, gender }=value
   return (
-    <Link to={`/members/${id}`}>
+    <div className="relative">
       {/* // <Link to={`/members`}> */}
-      <div className="flex items-center justify-between flex-row gap-4 my-3 bg-gray-100  px-2 py-1 rounded-md">
+      <div className="flex items-center justify-between flex-row gap-4 my-3 bg-gray-100  px-2 py-1 rounded-md ">
         <div className="flex  items-center gap-1 rounded-lg ">
           {/* <MemberProfile profile={profile} /> */}
+          <Link to={`/members/${id}`}>
           <div className="px-2 ">
             <p className="text-xs font-semibold">{name}</p>
 
             <p className="text-xs text-gray-600 flex flex-wrap ">{gender}</p>
           </div>
+            </Link>
+
         </div>
-        <MdOutlineKeyboardArrowRight />
+        <div onClick={()=>setShow(!show)}><MdOutlineKeyboardArrowRight/></div>
+       { show && (<div className="py-2 bg-gray-400 rounded-xl z-10 absolute top-7 right-0 ">
+         <button onClick={()=>{handleEdit(value); setShow();} } className="p-2 m-1 bg-gray-700 text-white rounded-md"><FaRegEdit/></button>
+         <button onClick={() => {  handleDelete(id); setShow();}}  className="p-2 m-1 bg-gray-700 text-white  rounded-md"><AiTwotoneDelete/></button>
+          </div>
+      )}
       </div>
-    </Link>
+      </div>
   );
 };
 
