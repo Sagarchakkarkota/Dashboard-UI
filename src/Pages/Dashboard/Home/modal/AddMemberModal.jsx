@@ -5,15 +5,19 @@ import { AiOutlineClose } from "react-icons/ai";
 import { setIsModal, setMembers } from "../MemberSlice";
 import { useDispatch } from "react-redux";
 // import { addMember } from "../../../../api/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewMember } from "../../../../api/api";
 const Modal = () => {
   const dispatch = useDispatch();
-
+  const queryClient = useQueryClient()
+   
 const mutation=useMutation({
   mutationFn:(mutateData)=>{
     return addNewMember(mutateData)
-  }
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['member'] })
+  },
 })
 
   const formik = useFormik({
