@@ -15,7 +15,7 @@ const { id,name, gender }=value
   return (
     <div className="relative">
       {/* // <Link to={`/members`}> */}
-      <div className="flex items-center justify-between flex-row gap-4 my-3 bg-gray-200  px-2 py-1 rounded-md ">
+      <div className="flex items-center justify-between flex-row cursor-pointer gap-4 my-3 bg-gray-200  px-2 py-1 rounded-md ">
         <div className="flex  items-center gap-1 rounded-lg ">
           {/* <MemberProfile profile={profile} /> */}
           <div className="px-2 " onClick={handleNavigate}>

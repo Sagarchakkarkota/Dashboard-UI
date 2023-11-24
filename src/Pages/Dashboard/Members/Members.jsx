@@ -1,56 +1,19 @@
 import { useParams } from "react-router-dom";
 import ThirdCart from "../Home/asidecarts/ThirdCart";
 import SideBar from "../SideBar";
-import {  useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMember} from "../../../api/api";
+import {  useQueryClient } from "@tanstack/react-query";
 
 const Members = () => {
 
-    const { data:getData} = useQuery({
-    queryKey: ["member"],
-    queryFn: getMember,
-    staleTime: 10000,
-  });
-  const param = useParams();
+
+  const {id} = useParams();
 
   
   const queryClient = useQueryClient();
-
-
- 
-const getSpecificDataFromCache = (id) => {
-  const cachedData = queryClient.getQueryData(['member']);
-  if (cachedData) {
-    const specificData = cachedData?.find((item) =>{
-     
-      return item.id == id
-    } );
-    return specificData;
-  }
-
-  return null;
-};
-
-
-const specificData=getSpecificDataFromCache(param.id)
-
-  console.log(specificData)
+  const singleMember = queryClient.getQueryData(['member'])?.find((item)=>{return item.id==id})
+ console.log(singleMember)
+//singleMember received from cachedData 
   
-  // const { data:singleData} = useQuery({
-  //   queryKey: ["singleMember",param.id],
-  //   queryFn:()=>getSingleMember(param.id) ,
-  //   staleTime: 60000,
-
-  // });
-
-
-
-  // const { data:getData} = useQuery({
-  //   queryKey: ["member"],
-  //   queryFn: getMember,
-  //   staleTime: 10000,
-  // });
-
 
 
   return (
@@ -63,8 +26,8 @@ const specificData=getSpecificDataFromCache(param.id)
     
           <div className="p-5 bg-gray-300 rounded-b-md  bg-gradient-to-br from-blue-300 to-white w-[600px] xl:w-[370px]  ">
       
-            <h1 className="xlBoldFont ">Name : {specificData?.name}</h1>
-            <h3 className="xlBoldFont">Gender : {specificData?.gender}</h3>
+            <h1 className="xlBoldFont ">Name : {singleMember?.name}</h1>
+            <h3 className="xlBoldFont">Gender : {singleMember?.gender}</h3>
          
           </div>
         
