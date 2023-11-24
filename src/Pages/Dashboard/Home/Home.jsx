@@ -1,4 +1,3 @@
-import React from "react";
 import MainSection from "./MainSection";
 import AsideSection from "./AsideSection";
 import Navbar from "../Navbar";
@@ -8,7 +7,7 @@ const Home = () => {
   return (
     <div className="flex">
       <SideBar /> {/* taken 240px */}
-      <div className=" bg-gradient-to-l from-[#F5D300] to-gray-200 w-full ">
+      <div className="  w-full ">
         <Navbar />
 
         <div className="w-full flex justify-evenly">

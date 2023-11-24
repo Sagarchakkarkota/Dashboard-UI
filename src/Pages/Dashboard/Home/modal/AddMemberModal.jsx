@@ -41,7 +41,6 @@ const mutation=useMutation({
     
     onSubmit: (values) => {
       const {id,name,email,gender,status}=values
-      // addMember({id:id,name:name, email:email, gender:gender, status:status})
       mutation.mutate({id:id,name:name, email:email, gender:gender, status:status})
       dispatch(setMembers(values));
       formik.resetForm();

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Trans from "./Pages/transactions/trans";
 function App() {
   return (
-    <div className="border-[2px] border-red-500">
+    <div className="border-[2px] border-red-500 bg-gradient-to-b from-gray-100 to-gray-200">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

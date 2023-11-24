@@ -2,10 +2,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { editMember } from '../../../../api/api'
 import { IoClose } from "react-icons/io5";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Input from '../../../../Components/Input';
 export default function EditModal({isOpen,setIsOpen ,value}) {
   const {id, name, email, gender, status}=value
-  console.log(email)
-
+  const queryClient=useQueryClient()
+  
 const [formValue,setFormvalue]=useState({id:id,name:name, email:email, gender:gender ,status:status})
   function closeModal() {
     setIsOpen(false)
@@ -17,9 +19,19 @@ const [formValue,setFormvalue]=useState({id:id,name:name, email:email, gender:ge
   const handleChange=(e)=>{
 setFormvalue({...formValue,[e.target.name]:e.target.value})
   }
+
+ 
+  const mutation=useMutation({
+    mutationFn:(mutateData)=>{
+      return editMember(mutateData)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['member'] })
+    },
+  })
   
   const handleSubmit=()=>{
-    editMember(formValue)
+    mutation.mutate(formValue)
 
   }
   return (
@@ -75,11 +87,11 @@ setFormvalue({...formValue,[e.target.name]:e.target.value})
                   <form action="">
 
                   <div className="mt-2 flex flex-col gap-2">
-                  <input type="text" name='id' id='id' className='border p-2 border-black rounded-sm hover:bg-gray-300' placeholder='Id' disabled={true} value={formValue.id} />
-                    <input type="text" name='name' id='name' className='border p-2 border-black rounded-sm' placeholder='Name' value={formValue.name} onChange={handleChange} />
-                    <input type="text" name='email' id='email' className='border p-2 border-black rounded-sm' placeholder='Email'  value={formValue.email} onChange={handleChange}/>
-                    <input type="text" name='gender' id='gender' className='border p-2 border-black rounded-sm' placeholder='Gender' value={formValue.gender} onChange={handleChange}/>
-                    <input type="text" name='status' id='status' className='border p-2 border-black rounded-sm' placeholder='Status' value={formValue.status} onChange={handleChange}/>
+                  <Input  name='id' id='id'  label='Id' disabled={true} value={formValue.id} />
+                    <Input  name='name' id='name'  label='Name' value={formValue.name} onChange={handleChange} />
+                    <Input name='email' id='email'  label='Email'  value={formValue.email} onChange={handleChange}/>
+                    <Input  name='gender' id='gender'  label='Gender' value={formValue.gender} onChange={handleChange}/>
+                    <Input  name='status' id='status'  label='Status' value={formValue.status} onChange={handleChange}/>
                 
                     </div>
 

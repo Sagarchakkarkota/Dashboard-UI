@@ -34,7 +34,7 @@ const Table = () => {
           {headers.map((header, index) => (
             <div
               key={index}
-              className=" flex justify-center px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className=" flex justify-center px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
             >
               {header}
             </div>

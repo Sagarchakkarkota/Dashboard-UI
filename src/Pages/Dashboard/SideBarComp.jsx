@@ -50,7 +50,7 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
 
   return (
     <div
-      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-br from-[#08F7FE] to-white `}
+      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-bl from-gray-100 to-gray-200 `}
     >
       <div>
         <div

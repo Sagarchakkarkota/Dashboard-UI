@@ -30,7 +30,6 @@ return res
   }
 }
 export const getSingleMember= async (id)=>{
-  console.log(id)
   try{
     const response=await fetch(`https://gorest.co.in/public/v2/users/${id}`,{
       method:"GET",
