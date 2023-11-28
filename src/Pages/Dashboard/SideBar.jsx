@@ -7,7 +7,7 @@ const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <>
-      <div className="minlg:hidden ">
+      <div className="minlg:hidden">
         {!showSideBar && (
           <div
             className="p-4  absolute top-4 z-10  "

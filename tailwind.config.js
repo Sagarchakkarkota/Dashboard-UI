@@ -42,6 +42,9 @@ export default {
       gridTemplateColumns: {
         50: "repeat(8, 50px)", // Define a custom grid with 8 columns each 50px wide
       },
+      boxShadow: {
+        testShadow: " 0px 0px 20px 4px rgba(199,199,199,1)",
+      },
     },
   },
   plugins: [],

@@ -16,9 +16,8 @@ const ThirdCart = ({ ID }) => {
     queryFn: getMember,
     staleTime: 60000,
   });
-  console.log(ID);
+
   const filteredData = getData?.filter((item) => item.id != ID);
-  console.log(filteredData);
 
   const dispatch = useDispatch();
   const [value, setValue] = useState([]);
@@ -30,7 +29,7 @@ const ThirdCart = ({ ID }) => {
     },
     onSuccess: () => {
       // const membersData = queryClient.getQueryData(["member"]);
-      // console.log(membersData);
+
       // const singleMemberIndex = membersData.indexOf((item) => {
       //   return item.id == ID;
       // });

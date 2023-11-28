@@ -10,6 +10,7 @@ import profilepic from "../../assets/profile.jpg";
 import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import useGetUser from "../../customHooks/useGetUser";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
     { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },
@@ -47,7 +48,7 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
       setListitems(updatedItems);
     }
   };
-
+  const { userData } = useGetUser();
   return (
     <div
       className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-bl from-gray-100 to-gray-200 `}
@@ -111,10 +112,10 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
             <img className="rounded-[30px]" src={profilepic} alt="" />
           </div>
           <h1 className="w-full flex justify-center text-md font-bold ">
-            Nora Watson
+            {userData?.name}
           </h1>
           <p className="w-full flex justify-center text-xs text-gray-500 ">
-            Sale Manager
+            {userData?.email}
           </p>
         </div>
 

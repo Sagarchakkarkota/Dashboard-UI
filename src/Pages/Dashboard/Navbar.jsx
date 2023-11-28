@@ -2,8 +2,12 @@ import React from "react";
 import { AiFillMessage } from "react-icons/ai";
 import { TbBellMinusFilled } from "react-icons/tb";
 import profilepic from "../../assets/profile.jpg";
+import { Link } from "react-router-dom";
+import useGetUser from "../../customHooks/useGetUser";
 
 const Navbar = () => {
+  const { userData } = useGetUser();
+
   return (
     <div className=" h-[100px]   w-full flex justify-between px-14 py-4 items-center  ">
       <div className="text-2xl font-bold h-[80%]">
@@ -25,10 +29,10 @@ const Navbar = () => {
           </div>
           <div className="px-2">
             <h1 className="w-full flex justify-center text-md font-bold whitespace-nowrap  ">
-              Nora Watson
+              {userData?.name}
             </h1>
             <p className="w-full flex justify-center text-xs text-gray-500 whitespace-nowrap ">
-              Sale Manager
+              {userData?.email}
             </p>
           </div>
         </div>
