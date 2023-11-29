@@ -1,12 +1,12 @@
-import ListTeamMember from "../components/ListTeamMember";
-import Modal from "../modal/AddMemberModal";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsModal } from "../MemberSlice";
-import { deleteMember, getMember } from "../../../../api/api";
-import EditModal from "../modal/EditModal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { deleteMember, getMember } from "../../../../api/api";
+import { setIsModal } from "../MemberSlice";
+import ListTeamMember from "../components/ListTeamMember";
+import Modal from "../modal/AddMemberModal";
+import EditModal from "../modal/EditModal";
 
 const ThirdCart = ({ ID }) => {
   const navigate = useNavigate();
@@ -28,16 +28,7 @@ const ThirdCart = ({ ID }) => {
       return deleteMember(mutateData);
     },
     onSuccess: () => {
-      // const membersData = queryClient.getQueryData(["member"]);
-
-      // const singleMemberIndex = membersData.indexOf((item) => {
-      //   return item.id == ID;
-      // });
-
-      // const nextMemberData = membersData[singleMemberIndex + 2];
-
       queryClient.invalidateQueries({ queryKey: ["member"] });
-      // navigate(`/members/${nextMemberData.id}`);
     },
   });
 

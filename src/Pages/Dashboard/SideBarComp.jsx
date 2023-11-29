@@ -1,16 +1,16 @@
+import { Disclosure } from "@headlessui/react";
 import React, { useState } from "react";
 import { BiLogIn, BiSolidDashboard } from "react-icons/bi";
-import { GrTransaction } from "react-icons/gr";
-import { FcStatistics } from "react-icons/fc";
-import { RiTeamFill } from "react-icons/ri";
 import { BsFileBarGraph } from "react-icons/bs";
+import { FcStatistics } from "react-icons/fc";
+import { GrTransaction } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
+import { RiArrowDropDownLine, RiTeamFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
-import profilepic from "../../assets/profile.jpg";
 import { Link } from "react-router-dom";
-import { Disclosure } from "@headlessui/react";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import useGetUser from "../../customHooks/useGetUser";
+import profilepic from "../../assets/profile.jpg";
+// import useGetUser from "../../customHooks/useGetUser";
+import useLogOut from "../../customHooks/useLogOut";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
     { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },
@@ -34,9 +34,6 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
     const draggedItemId = e.dataTransfer.getData("text/plain");
     const draggedItem = listitems.find((value) => value.id == draggedItemId);
 
-    // if (!draggedItem) {
-    //   return;
-    // }
     const updatedItems = listitems.filter((value) => draggedItemId != value.id);
 
     const targetIndex = updatedItems.findIndex((item) => item.id === dropid);
@@ -48,10 +45,13 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
       setListitems(updatedItems);
     }
   };
-  const { userData } = useGetUser();
+  // const { service } = useGetUser();
+  // const userData = service?.data || {};
+  const { handleLogout } = useLogOut();
+
   return (
     <div
-      className={`   w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-bl from-gray-100 to-gray-200 `}
+      className={`w-[230px] h-screen  sticky top-0  py-2 px-4 flex flex-col justify-between bg-gradient-to-bl from-gray-100 to-gray-200 `}
     >
       <div>
         <div
@@ -112,14 +112,17 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
             <img className="rounded-[30px]" src={profilepic} alt="" />
           </div>
           <h1 className="w-full flex justify-center text-md font-bold ">
-            {userData?.name}
+            {/* {userData?.name} */}
           </h1>
           <p className="w-full flex justify-center text-xs text-gray-500 ">
-            {userData?.email}
+            {/* {userData?.email} */}
           </p>
         </div>
 
-        <div className="w-full flex justify-center  items-center gap-3 py-10 text-md font-medium ">
+        <div
+          onClick={handleLogout}
+          className="w-full flex justify-center  items-center gap-3 p-4 text-md font-medium  hover:bg-button_green cursor-pointer"
+        >
           <BiLogIn className="text-xl" />
           <span>Log Out</span>
         </div>

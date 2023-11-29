@@ -1,12 +1,26 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-const ProtectedRoute = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    return <Outlet />;
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useGetUser from "../customHooks/useGetUser";
+
+const ProtectedRoute = ({ children }) => {
+  const { service } = useGetUser();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (service.status == "error") {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
+  }, [service.status]);
+
+  if (service.isLoading) {
+    return <div>loading.....</div>;
   }
 
-  return <Navigate to="/login" />;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

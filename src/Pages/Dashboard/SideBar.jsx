@@ -1,7 +1,7 @@
+import { Transition } from "@headlessui/react";
 import React, { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import SideBarComp from "./SideBarComp";
-import { Transition } from "@headlessui/react";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -18,7 +18,6 @@ const SideBar = () => {
             <CiMenuBurger />
           </div>
         )}
-        {/* {showSideBar && ( */}
         <Transition
           show={showSideBar}
           className="absolute top-0 left-0"
@@ -34,11 +33,6 @@ const SideBar = () => {
             showSideBar={showSideBar}
           />
         </Transition>
-        {/* )} */}
-
-        {/* <button onClick={() => setIsShowing((isShowing) => !isShowing)}>
-          Toggle
-        </button> */}
       </div>
       <div className="lg:hidden">
         <SideBarComp />
