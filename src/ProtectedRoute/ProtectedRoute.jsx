@@ -9,12 +9,13 @@ const ProtectedRoute = ({ children }) => {
 
   const navigate = useNavigate();
   useEffect(() => {
+    if (service.isLoading) return () => {};
     if (service.status == "error") {
       navigate("/login");
     } else {
       navigate("/");
     }
-  }, [service.status]);
+  }, [service.status, service.isLoading]);
 
   if (service.isLoading) {
     return <div>loading.....</div>;

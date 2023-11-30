@@ -6,8 +6,8 @@ import useGetUser from "../../customHooks/useGetUser";
 // import useGetUser from "../../customHooks/useGetUser";
 
 const Navbar = () => {
-  // const { service } = useGetUser();
-  // const userData = service?.data || {};
+  const { service } = useGetUser();
+  const userData = service?.data || {};
 
   return (
     <div className=" h-[100px]   w-full flex justify-between px-14 py-4 items-center  ">
@@ -30,10 +30,10 @@ const Navbar = () => {
           </div>
           <div className="px-2">
             <h1 className="w-full flex justify-center text-md font-bold whitespace-nowrap  ">
-              {/* {userData?.name} */}
+              {userData?.name}
             </h1>
             <p className="w-full flex justify-center text-xs text-gray-500 whitespace-nowrap ">
-              {/* {userData?.email} */}
+              {userData?.email}
             </p>
           </div>
         </div>

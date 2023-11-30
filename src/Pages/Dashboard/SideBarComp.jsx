@@ -9,7 +9,7 @@ import { RiArrowDropDownLine, RiTeamFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import profilepic from "../../assets/profile.jpg";
-// import useGetUser from "../../customHooks/useGetUser";
+import useGetUser from "../../customHooks/useGetUser";
 import useLogOut from "../../customHooks/useLogOut";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
@@ -45,8 +45,8 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
       setListitems(updatedItems);
     }
   };
-  // const { service } = useGetUser();
-  // const userData = service?.data || {};
+  const { service } = useGetUser();
+  const userData = service?.data || {};
   const { handleLogout } = useLogOut();
 
   return (
@@ -112,10 +112,10 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
             <img className="rounded-[30px]" src={profilepic} alt="" />
           </div>
           <h1 className="w-full flex justify-center text-md font-bold ">
-            {/* {userData?.name} */}
+            {userData?.name}
           </h1>
           <p className="w-full flex justify-center text-xs text-gray-500 ">
-            {/* {userData?.email} */}
+            {userData?.email}
           </p>
         </div>
 
