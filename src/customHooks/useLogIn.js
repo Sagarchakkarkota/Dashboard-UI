@@ -1,3 +1,4 @@
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 import { useState } from "react";
@@ -12,38 +13,42 @@ const useLogIn = () => {
   const navigate = useNavigate();
 
   const getLogin = async (value) => {
-    const headers = {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    };
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      };
 
-    const res = await axios.post(
-      "https://uatapicorporatetravel.fynity.in/api/login",
-      value,
-      { headers: headers }
-    );
-    const response = res?.data;
-    if (response.token) {
-      localStorage.setItem("token", response.token);
-      navigate("/");
+      const res = await axios.post(
+        "https://uatapicorporatetravel.fynity.in/api/login",
+        value,
+        { headers: headers }
+      );
+      return res;
+    } catch (error) {
+      throw new Error("Failed to fetch user data");
     }
   };
 
+  const mutation = useMutation({
+    mutationFn: (value) => {
+      return getLogin(value);
+    },
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.data.token);
+      navigate("/");
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(value);
+  };
   return {
-    getLogin,
     value,
     setValue,
+    handleSubmit,
   };
 };
 
 export default useLogIn;
-
-// const { data } = useQuery({
-//   queryKey: ["loginUser"],
-//   queryFn: getLogin,
-//   onSuccess: () => {
-//     localStorage.setItem("token", data.token);
-//     console.log(data.token);
-//     navigate("/");
-//   },
-// });

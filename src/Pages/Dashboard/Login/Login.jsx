@@ -2,12 +2,7 @@ import Input from "../../../Components/Input";
 import useLogIn from "../../../customHooks/useLogIn";
 
 const Login = () => {
-  const { getLogin, value, setValue } = useLogIn();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getLogin(value);
-  };
+  const { value, setValue, handleSubmit } = useLogIn();
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });

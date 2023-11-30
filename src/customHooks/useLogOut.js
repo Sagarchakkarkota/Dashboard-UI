@@ -18,17 +18,13 @@ const useLogOut = () => {
     return res;
   };
 
-  const removeToken = () => {
-    localStorage.removeItem("token");
-    return navigate("/login");
-  };
-
   const mutation = useMutation({
     mutationFn: () => {
       return logOut();
     },
     onSuccess: () => {
-      removeToken();
+      localStorage.removeItem("token");
+      navigate("/login");
     },
   });
 

@@ -79,18 +79,21 @@ export const deleteMember = async (id) => {
   });
   return response.json;
 };
-// export const addMember= async ({id,name,email,gender,status})=>{
+export const getUser = async () => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
 
-//   const response=await fetch("https://gorest.co.in/public/v2/users",{
-//     method:"POST",
-//     headers:{
-//       "Content-Type": "application/json",
-//       "Authorization": "Bearer 8075f13f69c97ba4dca75abd53f47dd490a5f98706c0cb5b6798b66ae0b420f6"
-//     },
-//     body:JSON.stringify( {id,name,email,gender,status})
+    const response = await axios.get(
+      "https://uatapicorporatetravel.fynity.in/api/user",
+      { headers }
+    );
 
-//   })
-//   const res=await response.json()
-// return res
-
-// }
+    return response.data.data;
+  } catch (error) {
+    throw new Error("Failed to fetch user data");
+  }
+};
