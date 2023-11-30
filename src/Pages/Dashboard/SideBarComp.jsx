@@ -55,7 +55,7 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
     >
       <div>
         <div
-          className="minlg:hidden absolute top-[25px] right-2"
+          className="minlg:hidden absolute top-[25px] right-2 cursor-pointer"
           onClick={() => {
             setShowSideBar(false);
           }}
@@ -119,13 +119,13 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
           </p>
         </div>
 
-        <div
+        <button
           onClick={handleLogout}
           className="w-full flex justify-center  items-center gap-3 p-4 text-md font-medium  hover:bg-button_green cursor-pointer"
         >
           <BiLogIn className="text-xl" />
           <span>Log Out</span>
-        </div>
+        </button>
       </div>
     </div>
   );

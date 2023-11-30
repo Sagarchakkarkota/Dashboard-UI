@@ -27,10 +27,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* 
+
           <Route path="/members/:id" element={<Members />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/trans" element={<Trans />} /> */}
+          <Route path="/trans" element={<Trans />} />
         </Routes>
       </Router>
     </div>

@@ -1,9 +1,7 @@
-import React from "react";
 import { AiFillMessage } from "react-icons/ai";
 import { TbBellMinusFilled } from "react-icons/tb";
 import profilepic from "../../assets/profile.jpg";
 import useGetUser from "../../customHooks/useGetUser";
-// import useGetUser from "../../customHooks/useGetUser";
 
 const Navbar = () => {
   const { service } = useGetUser();

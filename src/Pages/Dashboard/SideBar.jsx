@@ -10,7 +10,7 @@ const SideBar = () => {
       <div className="minlg:hidden">
         {!showSideBar && (
           <div
-            className="p-4  absolute top-4 z-10  "
+            className="p-4  absolute top-4 z-10 cursor-pointer  "
             onClick={() => {
               setShowSideBar(true);
             }}

@@ -79,21 +79,3 @@ export const deleteMember = async (id) => {
   });
   return response.json;
 };
-export const getUser = async () => {
-  try {
-    const headers = {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    };
-
-    const response = await axios.get(
-      "https://uatapicorporatetravel.fynity.in/api/user",
-      { headers }
-    );
-
-    return response.data.data;
-  } catch (error) {
-    throw new Error("Failed to fetch user data");
-  }
-};

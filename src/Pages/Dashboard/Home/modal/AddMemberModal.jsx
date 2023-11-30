@@ -9,26 +9,26 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNewMember } from "../../../../api/api";
 const Modal = () => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient()
-   
-const mutation=useMutation({
-  mutationFn:(mutateData)=>{
-    return addNewMember(mutateData)
-  },
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['member'] })
-  },
-})
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (mutateData) => {
+      return addNewMember(mutateData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["member"] });
+    },
+  });
 
   const formik = useFormik({
     initialValues: {
-      id:new Date().getTime() ,
+      id: new Date().getTime(),
       name: "",
       // occupation: "",
       // profilepicture: "",
       email: "",
       gender: "",
-      status: "inactive"
+      status: "inactive",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
@@ -36,18 +36,24 @@ const mutation=useMutation({
       // profilepicture: Yup.string().required("Profile picture is required"),
       email: Yup.string().required("Email is required"),
       gender: Yup.string().required("Gender is required"),
-      status:Yup.string().required("Status is required eg.active/inactive")
+      status: Yup.string().required("Status is required eg.active/inactive"),
     }),
-    
+
     onSubmit: (values) => {
-      const {id,name,email,gender,status}=values
-      mutation.mutate({id:id,name:name, email:email, gender:gender, status:status})
+      const { id, name, email, gender, status } = values;
+      mutation.mutate({
+        id: id,
+        name: name,
+        email: email,
+        gender: gender,
+        status: status,
+      });
       dispatch(setMembers(values));
       formik.resetForm();
       dispatch(setIsModal(false));
     },
   });
- 
+
   return (
     <div className="  fixed z-20 top-0 left-0 h-full w-full flex items-center justify-center  bg-gradient-to-br from-gray-600 ">
       <div className="absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -132,7 +138,9 @@ const mutation=useMutation({
               value={formik.values.gender}
             />
             {formik.errors.name && (
-              <p className="text-red-500 text-xs mt-1">{formik.errors.gender}</p>
+              <p className="text-red-500 text-xs mt-1">
+                {formik.errors.gender}
+              </p>
             )}
           </div>
           <div className="mb-4">
@@ -148,7 +156,9 @@ const mutation=useMutation({
               value={formik.values.status}
             />
             {formik.errors.name && (
-              <p className="text-red-500 text-xs mt-1">{formik.errors.status}</p>
+              <p className="text-red-500 text-xs mt-1">
+                {formik.errors.status}
+              </p>
             )}
           </div>
 

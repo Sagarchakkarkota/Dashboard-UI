@@ -8,15 +8,6 @@ const Users = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 5;
 
-  // const headers = [
-  //   " Name",
-  //   "User Name",
-  //   "Mail Id",
-  //   "Phone",
-  //   "Website",
-  //   "Address",
-  //   "Company",
-  // ];
   const paginate = (data, pageNumber, pageSize) => {
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;

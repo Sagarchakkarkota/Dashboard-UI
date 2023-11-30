@@ -10,9 +10,6 @@ const Login = () => {
   };
   return (
     <div>
-      <nav className="h-[40px] py-2 w-full flex  items-center bg-black text-white px-5">
-        <Link to="/">Home</Link>
-      </nav>
       <div className="  w-full py flex py-10 justify-center items-center bg-[ #F2F3F4] ">
         <div className=" flex flex-col shadow-testShadow items-center justify-center  w-[400px] p-4 ">
           <h1 className="text-3xl ">Log In</h1>
@@ -40,7 +37,7 @@ const Login = () => {
 
             <button
               onClick={handleSubmit}
-              className="my-2 p-1 px-4 rounded-2xl border-[1px] border-gray-600"
+              className="my-2 p-1 px-4 rounded-2xl border-[1px] border-gray-600 hover:bg-black hover:text-white "
             >
               Submit
             </button>
@@ -59,9 +56,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// {
-//   "email":"aniket.magadum@fyntune.com",
-//   "password":"password",
-//    "device_name":"macbook"
-// }

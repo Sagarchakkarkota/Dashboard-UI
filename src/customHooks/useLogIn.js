@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../services/axiosInstance";
 
 const useLogIn = () => {
   const [value, setValue] = useState({
@@ -14,16 +14,7 @@ const useLogIn = () => {
 
   const getLogin = async (value) => {
     try {
-      const headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      };
-
-      const res = await axios.post(
-        "https://uatapicorporatetravel.fynity.in/api/login",
-        value,
-        { headers: headers }
-      );
+      const res = await axiosInstance.post("/login", value);
       return res;
     } catch (error) {
       throw new Error("Failed to fetch user data");

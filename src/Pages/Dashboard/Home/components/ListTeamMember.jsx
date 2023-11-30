@@ -4,14 +4,14 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
-const ListTeamMember = ({ value,handleEdit,handleDelete}) => {
-  const [show,setShow]=useState(false)
-const { id,name, gender }=value
+const ListTeamMember = ({ value, handleEdit, handleDelete }) => {
+  const [show, setShow] = useState(false);
+  const { id, name, gender } = value;
 
- const navigate=useNavigate()
- const handleNavigate=()=>{
-  navigate(`/members/${id}`)
- }
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(`/members/${id}`);
+  };
   return (
     <div className="relative">
       {/* // <Link to={`/members`}> */}
@@ -23,16 +23,34 @@ const { id,name, gender }=value
 
             <p className="text-xs text-gray-600 flex flex-wrap ">{gender}</p>
           </div>
-
         </div>
-        <div onClick={()=>setShow(!show)}><MdOutlineKeyboardArrowDown /></div>
-       { show && (<div className="py-2 bg-gray-400 rounded-xl z-10 absolute top-7 right-0 ">
-         <button onClick={()=>{handleEdit(value); setShow();} } className="p-2 m-1 bg-gray-700 text-white rounded-md"><FaRegEdit/></button>
-         <button onClick={() => {  handleDelete(id); setShow();}}  className="p-2 m-1 bg-gray-700 text-white  rounded-md"><AiTwotoneDelete/></button>
+        <div onClick={() => setShow(!show)}>
+          <MdOutlineKeyboardArrowDown />
+        </div>
+        {show && (
+          <div className="py-2 bg-gray-400 rounded-xl z-10 absolute top-7 right-0 ">
+            <button
+              onClick={() => {
+                handleEdit(value);
+                setShow();
+              }}
+              className="p-2 m-1 bg-gray-700 text-white rounded-md"
+            >
+              <FaRegEdit />
+            </button>
+            <button
+              onClick={() => {
+                handleDelete(id);
+                setShow();
+              }}
+              className="p-2 m-1 bg-gray-700 text-white  rounded-md"
+            >
+              <AiTwotoneDelete />
+            </button>
           </div>
-      )}
+        )}
       </div>
-      </div>
+    </div>
   );
 };
 
