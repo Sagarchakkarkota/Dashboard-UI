@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../../api/api";
-import SideBar from "../SideBar";
+import SideBar from "../../../components/sidebar/SideBar";
 
 import { useState } from "react";
 

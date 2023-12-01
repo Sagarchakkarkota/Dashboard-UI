@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import Input from "../../../Components/Input";
-import useLogIn from "../../../customHooks/useLogIn";
+import Input from "../../../UI/Input";
+import useLogIn from "./hooks/useLogIn";
 
 const Login = () => {
   const { value, setValue, handleSubmit } = useLogIn();

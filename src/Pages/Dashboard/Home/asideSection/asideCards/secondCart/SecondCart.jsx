@@ -1,5 +1,4 @@
-import React from "react";
-import MemberProfile from "../components/MemberProfile";
+import MemberProfile from "../../../components/MemberProfile";
 
 const SecondCart = () => {
   return (

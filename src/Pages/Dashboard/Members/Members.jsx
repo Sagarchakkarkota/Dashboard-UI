@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import ThirdCart from "../Home/asidecarts/ThirdCart";
-import SideBar from "../SideBar";
+import ThirdCart from "../Home/asideSection/asideCards/thirdCart/ThirdCart";
+import SideBar from "../../../components/sidebar/SideBar";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getMember } from "../../../api/api";
 

@@ -1,16 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { deleteMember, getMember } from "../../../../api/api";
-import { setIsModal } from "../MemberSlice";
-import ListTeamMember from "../components/ListTeamMember";
-import Modal from "../modal/AddMemberModal";
-import EditModal from "../modal/EditModal";
+import { deleteMember, getMember } from "../../../../../../api/api";
+import { setIsModal } from "../../../MemberSlice";
+import ListTeamMember from "../../../components/ListTeamMember";
+import Modal from "../../../components/modal/AddMemberModal";
+import EditModal from "../../../components/modal/EditModal";
 
 const ThirdCart = ({ ID }) => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
+
   const { data: getData } = useQuery({
     queryKey: ["member"],
     queryFn: getMember,

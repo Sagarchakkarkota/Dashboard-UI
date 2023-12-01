@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { editMember } from "../../../../api/api";
+import { editMember } from "../../../../../api/api";
 import { IoClose } from "react-icons/io5";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Input from "../../../../Components/Input";
+import Input from "../../../../../UI/Input";
 export default function EditModal({ isOpen, setIsOpen, value }) {
   const { id, name, email, gender, status } = value;
   const queryClient = useQueryClient();

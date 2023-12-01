@@ -1,9 +1,8 @@
-import React from "react";
-import Cart from "../../../Components/Cart";
+import Cart from "../../../../UI/Cart";
 import { VscGraph } from "react-icons/vsc";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import Table from "./Table";
-import SymbolButton from "./components/SymbolButton";
+import Table from "../Table";
+import SymbolButton from "../components/SymbolButton";
 
 const MainSection = () => {
   const cartItems = [

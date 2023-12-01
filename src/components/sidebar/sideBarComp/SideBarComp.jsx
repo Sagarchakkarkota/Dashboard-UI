@@ -8,9 +8,9 @@ import { IoMdSettings } from "react-icons/io";
 import { RiArrowDropDownLine, RiTeamFill } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import profilepic from "../../assets/profile.jpg";
-import useGetUser from "../../customHooks/useGetUser";
-import useLogOut from "../../customHooks/useLogOut";
+import profilepic from "../../../assets/profile.jpg";
+import useGetUser from "../../../customHooks/useGetUser";
+import useLogOut from "../../../customHooks/useLogOut";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState([
     { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },

@@ -1,8 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../services/axiosInstance";
+import { userLogin } from "../authQueries";
 
 const useLogIn = () => {
   const [value, setValue] = useState({
@@ -12,18 +11,9 @@ const useLogIn = () => {
   });
   const navigate = useNavigate();
 
-  const getLogin = async (value) => {
-    try {
-      const res = await axiosInstance.post("/login", value);
-      return res;
-    } catch (error) {
-      throw new Error("Failed to fetch user data");
-    }
-  };
-
   const mutation = useMutation({
     mutationFn: (value) => {
-      return getLogin(value);
+      return userLogin(value);
     },
     onSuccess: (data) => {
       localStorage.setItem("token", data.data.token);

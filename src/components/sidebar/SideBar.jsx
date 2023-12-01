@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import React, { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
-import SideBarComp from "./SideBarComp";
+import SideBarComp from "./sideBarComp/SideBarComp";
 
 const SideBar = () => {
   const [showSideBar, setShowSideBar] = useState(false);

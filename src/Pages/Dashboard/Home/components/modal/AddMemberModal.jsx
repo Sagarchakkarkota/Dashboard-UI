@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { setIsModal, setMembers } from "../MemberSlice";
 import { useDispatch } from "react-redux";
-// import { addMember } from "../../../../api/api";
+import * as Yup from "yup";
+import { setIsModal, setMembers } from "../../MemberSlice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addNewMember } from "../../../../api/api";
+import { addNewMember } from "../../../../../api/api";
 const Modal = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
@@ -24,16 +23,12 @@ const Modal = () => {
     initialValues: {
       id: new Date().getTime(),
       name: "",
-      // occupation: "",
-      // profilepicture: "",
       email: "",
       gender: "",
       status: "inactive",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
-      // occupation: Yup.string().required("Occupation is required"),
-      // profilepicture: Yup.string().required("Profile picture is required"),
       email: Yup.string().required("Email is required"),
       gender: Yup.string().required("Gender is required"),
       status: Yup.string().required("Status is required eg.active/inactive"),
@@ -68,30 +63,6 @@ const Modal = () => {
         </button>
 
         <form onSubmit={formik.handleSubmit}>
-          {/* <div className="h-[150px] w-[150px] bg-white  rounded-[80px] absolute top-[-110px] right-[110px]">
-            {formik.values.profilepicture && (
-              <img
-                src={URL.createObjectURL(formik.values.profilepicture)}
-                alt="Selected Profile"
-                className="profile-image h-[150px] w-[150px] rounded-[80px]"
-              />
-            )}
-          </div> */}
-
-          {/* <div className="mb-4">
-            <input
-              type="file"
-              name="profilepicture"
-              id="profilepicture"
-              className="w-full p-2 "
-              onChange={(e) => {
-                formik.handleChange(e);
-                const file = e.target.files[0];
-                formik.setFieldValue("profilepicture", file);
-              }}
-            />
-          </div> */}
-
           <div className="mb-4">
             <label htmlFor="name" className="block font-medium">
               Name
@@ -161,26 +132,6 @@ const Modal = () => {
               </p>
             )}
           </div>
-
-          {/* <div className="mb-4">
-            <label htmlFor="occupation" className="block font-medium">
-              Occupation
-            </label>
-            <input
-              type="text"
-              id="occupation"
-              name="occupation"
-              className="w-full p-2 border rounded-md"
-              onChange={formik.handleChange}
-              value={formik.values.occupation}
-            />
-            {formik.errors.occupation && (
-              <p className="text-red-500 text-xs mt-1">
-                {formik.errors.occupation}
-              </p>
-            )}
-          </div> */}
-
           <div className="text-right">
             <button
               type="submit"
@@ -196,34 +147,3 @@ const Modal = () => {
 };
 
 export default Modal;
-
-// <Input
-//   type={"text"}
-//   id={"profilePhoto"}
-//   name={"profilePhoto"}
-//   onChange={(e) => {
-//     formik.handleChange(e);
-//     setProfilePhoto(e.target.value);
-//   }}
-//   value={profilePhoto}
-//   errors={formik.errors.profilePhoto}
-//   label={"Profile Photo"}
-// />
-// <Input
-//   type={"text"}
-//   id={"name"}
-//   name={"name"}
-//   onChange={formik.handleChange}
-//   value={formik.values.name}
-//   label={"Name"}
-//   errors={formik.errors.name}
-// />
-// <Input
-//   type="text"
-//   id="occupation"
-//   name="occupation"
-//   onChange={formik.handleChange}
-//   value={formik.values.occupation}
-//   errors={formik.errors.occupation}
-//   label="Occupation"
-// />

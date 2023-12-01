@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+const apiRequest = axios.create({
   baseURL: " https://uatapicorporatetravel.fynity.in/api",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
-
-export default axiosInstance;
+export default apiRequest;

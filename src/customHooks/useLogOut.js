@@ -1,25 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../services/axiosInstance";
+import { userLogOut } from "../Pages/Dashboard/Login/authQueries";
 
 const useLogOut = () => {
   const navigate = useNavigate();
-  const logOut = async () => {
-    const res = await axiosInstance.post(
-      "/logout",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    return res;
-  };
 
   const mutation = useMutation({
-    mutationFn: logOut,
+    mutationFn: userLogOut,
     onSuccess: () => {
       localStorage.removeItem("token");
       navigate("/login");
@@ -30,7 +17,6 @@ const useLogOut = () => {
     mutation.mutate();
   };
   return {
-    logOut,
     handleLogout,
   };
 };

@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Dashboard/Home/Home";
-import Login from "./Pages/Dashboard/Login/Login";
+import Login from "./Pages/Dashboard/Login/Index";
 import Members from "./Pages/Dashboard/Members/Members";
 import Users from "./Pages/Dashboard/users/Users";
-import Trans from "./Pages/transactions/trans";
+import Trans from "./Pages/Dashboard/transactions/trans";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 function App() {
   return (
