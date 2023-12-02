@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import ThirdCart from "../Home/asideSection/asideCards/thirdCart/ThirdCart";
 import SideBar from "../../../components/sidebar/SideBar";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMember } from "../../../api/api";
+import { getMember } from "../apiServices/goRestQuery/goRestQuery";
 
 const Members = () => {
   const { data: getData } = useQuery({

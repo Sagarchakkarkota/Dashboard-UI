@@ -1,35 +1,23 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMember, getMember } from "../../../../../../api/api";
+import {
+  deleteMember,
+  getMember,
+} from "../../../../apiServices/goRestQuery/goRestQuery";
 import { setIsModal } from "../../../MemberSlice";
-import ListTeamMember from "../../../components/ListTeamMember";
+import ListTeamMember from "../../../components/listTeamMember/ListTeamMember";
 import Modal from "../../../components/modal/AddMemberModal";
 import EditModal from "../../../components/modal/EditModal";
+import useGetMembersData from "./hook/useGetMembersData";
 
 const ThirdCart = ({ ID }) => {
-  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
-  const { data: getData } = useQuery({
-    queryKey: ["member"],
-    queryFn: getMember,
-    staleTime: 60000,
-  });
+  const { getData, mutation, value, setValue, isModal, isOpen, setIsOpen } =
+    useGetMembersData();
 
   const filteredData = getData?.filter((item) => item.id != ID);
-
-  const dispatch = useDispatch();
-  const [value, setValue] = useState([]);
-  const isModal = useSelector((state) => state.member.isModal);
-  const [isOpen, setIsOpen] = useState(false);
-  const mutation = useMutation({
-    mutationFn: (mutateData) => {
-      return deleteMember(mutateData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["member"] });
-    },
-  });
 
   const handleEdit = (value) => {
     setIsOpen(true);

@@ -1,4 +1,4 @@
-import apiRequest from "../../../lib/axios";
+import { apiRequest } from "../../../lib/axios/logApi/index";
 
 const userLogin = async (value) => {
   try {
@@ -10,25 +10,17 @@ const userLogin = async (value) => {
 };
 
 const userLogOut = async () => {
-  const res = await apiRequest.post(
-    "/logout",
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }
-  );
-  return res;
+  try {
+    const res = await apiRequest.post("/logout", {});
+    return res;
+  } catch (error) {
+    throw new Error("Failed to fetch user data");
+  }
 };
 
 const getUser = async () => {
   try {
-    const response = await apiRequest.get("/user", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await apiRequest.get("/user");
     return response.data.data;
   } catch (error) {
     throw new Error("Failed to fetch user data");

@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../authQueries";
+import { setAuthToken } from "../../../../lib/axios/logApi";
 
 const useLogIn = () => {
   const [value, setValue] = useState({
@@ -16,6 +17,7 @@ const useLogIn = () => {
       return userLogin(value);
     },
     onSuccess: (data) => {
+      setAuthToken(data.data.token);
       localStorage.setItem("token", data.data.token);
       navigate("/");
     },

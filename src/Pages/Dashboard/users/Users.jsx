@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../../api/api";
+import { getUsers } from "../apiServices/goRestQuery/goRestQuery";
 import SideBar from "../../../components/sidebar/SideBar";
 
 import { useState } from "react";

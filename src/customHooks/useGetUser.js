@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../Pages/Dashboard/Login/authQueries";
 
 const useGetUser = () => {
-  console.log("asdsdad");
   const service = useQuery({
     queryKey: ["getUser"],
     queryFn: getUser,

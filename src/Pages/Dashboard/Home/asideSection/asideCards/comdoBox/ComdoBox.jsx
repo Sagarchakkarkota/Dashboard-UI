@@ -1,19 +1,10 @@
 import { Combobox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
+import useGetFilteredPeople from "./hooks/useGetFilteredPeople";
 const ComdoBox = () => {
-  const [selected, setSelected] = useState(getData[0]);
-  const [query, setQuery] = useState("");
-
-  const filteredPeople =
-    query === ""
-      ? getData
-      : getData?.filter((person) =>
-          person.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+  const { selected, setSelected, query, setQuery, filteredPeople } =
+    useGetFilteredPeople();
   return (
     <div className="">
       <Combobox value={selected} onChange={setSelected}>

@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { editMember } from "../../../../../api/api";
+import { editMember } from "../../../apiServices/goRestQuery/goRestQuery";
 import { IoClose } from "react-icons/io5";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Input from "../../../../../UI/Input";

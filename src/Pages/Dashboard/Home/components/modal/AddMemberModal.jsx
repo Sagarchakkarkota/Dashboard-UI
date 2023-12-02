@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { setIsModal, setMembers } from "../../MemberSlice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addNewMember } from "../../../../../api/api";
+import { addNewMember } from "../../../apiServices/goRestQuery/goRestQuery";
 const Modal = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
