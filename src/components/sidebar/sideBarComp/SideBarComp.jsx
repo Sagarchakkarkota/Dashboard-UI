@@ -1,25 +1,15 @@
 import { Disclosure } from "@headlessui/react";
 import React, { useState } from "react";
-import { BiLogIn, BiSolidDashboard } from "react-icons/bi";
-import { BsFileBarGraph } from "react-icons/bs";
-import { FcStatistics } from "react-icons/fc";
-import { GrTransaction } from "react-icons/gr";
-import { IoMdSettings } from "react-icons/io";
-import { RiArrowDropDownLine, RiTeamFill } from "react-icons/ri";
+import { BiLogIn } from "react-icons/bi";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import profilepic from "../../../assets/profile.jpg";
 import useGetUser from "../../../customHooks/useGetUser";
 import useLogOut from "../../../customHooks/useLogOut";
+import { pages } from "../../../utility/utility";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
-  const [listitems, setListitems] = useState([
-    { id: 1, icon: BiSolidDashboard, name: "Dashborad", path: "/" },
-    { id: 2, icon: FcStatistics, name: "Statistics", path: "/" },
-    { id: 3, icon: GrTransaction, name: "Transaction", path: "/trans" },
-    { id: 4, icon: RiTeamFill, name: "Users", path: "/users" },
-    { id: 5, icon: BsFileBarGraph, name: "Sell Reports", path: "/" },
-    { id: 6, icon: IoMdSettings, name: "Settings", path: "/" },
-  ]);
+  const [listitems, setListitems] = useState(pages);
 
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData("text/plain", id);

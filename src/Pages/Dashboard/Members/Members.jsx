@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import ThirdCart from "../Home/asideSection/asideCards/thirdCart/ThirdCart";
+import ThirdCart from "../Home/components/asidesection/components/thirdCart/ThirdCart";
 import SideBar from "../../../components/sidebar/SideBar";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getMember } from "../apiServices/goRestQuery/goRestQuery";
+import { getMember } from "../../../lib/axios/apiServices/goRestQuery/goRestQuery";
 
 const Members = () => {
   const { data: getData } = useQuery({

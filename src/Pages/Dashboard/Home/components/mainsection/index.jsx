@@ -2,7 +2,7 @@ import Cart from "./components/cart/Cart";
 import { VscGraph } from "react-icons/vsc";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Table from "./components/table/Table";
-import SymbolButton from "../components/SymbolButton";
+import SymbolButton from "./components/symbolButton";
 import { cartItems } from "./constant";
 
 const MainSection = () => {

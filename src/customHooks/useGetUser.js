@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "../Pages/Dashboard/Login/authQueries";
+import { getUser } from "../lib/axios/apiServices/logQuery/authQueries";
 
 const useGetUser = () => {
   const service = useQuery({

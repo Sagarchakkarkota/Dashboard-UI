@@ -1,6 +1,6 @@
-import MainSection from "./mainsection/MainSection";
-import AsideSection from "./asideSection/AsideSection";
-import Navbar from "../../../components/Navbar";
+import MainSection from "./components/mainsection/index";
+import AsideSection from "./components/asidesection/index";
+import Navbar from "../../../components/navbar/Navbar";
 import SideBar from "../../../components/sidebar/SideBar";
 
 const Home = () => {

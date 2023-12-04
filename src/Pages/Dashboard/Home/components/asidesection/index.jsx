@@ -1,6 +1,6 @@
-import FirstCart from "./asideCards/firstCart/FirstCart";
-import SecondCart from "./asideCards/secondCart/SecondCart";
-import ThirdCart from "./asideCards/thirdCart/ThirdCart";
+import FirstCart from "./components/firstCart/FirstCart";
+import SecondCart from "./components/secondCart/SecondCart";
+import ThirdCart from "./components/thirdCart/ThirdCart";
 
 const AsideSection = () => {
   return (

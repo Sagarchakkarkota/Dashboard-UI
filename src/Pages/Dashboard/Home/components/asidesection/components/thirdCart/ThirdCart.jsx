@@ -1,14 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteMember,
-  getMember,
-} from "../../../../apiServices/goRestQuery/goRestQuery";
-import { setIsModal } from "../../../MemberSlice";
-import ListTeamMember from "../../../components/listTeamMember/ListTeamMember";
-import Modal from "../../../components/modal/AddMemberModal";
-import EditModal from "../../../components/modal/EditModal";
+import { useDispatch } from "react-redux";
+import { setIsModal } from "../../../../MemberSlice";
+import Modal from "./components/modal/AddMemberModal";
+import EditModal from "./components/modal/EditModal";
+import ListTeamMember from "./components/listTeamMember/ListTeamMember";
 import useGetMembersData from "./hook/useGetMembersData";
 
 const ThirdCart = ({ ID }) => {

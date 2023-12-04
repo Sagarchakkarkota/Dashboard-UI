@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useGetUser from "../customHooks/useGetUser";
+import useGetUser from "../../customHooks/useGetUser";
 
 const ProtectedRoute = ({ children }) => {
   const { service } = useGetUser();

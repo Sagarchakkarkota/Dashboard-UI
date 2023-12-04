@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { userLogOut } from "../Pages/Dashboard/Login/authQueries";
+import { userLogOut } from "../lib/axios/apiServices/logQuery/authQueries";
 
 const useLogOut = () => {
   const navigate = useNavigate();

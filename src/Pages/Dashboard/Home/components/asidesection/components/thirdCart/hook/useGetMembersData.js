@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   deleteMember,
   getMember,
-} from "../../../../../apiServices/goRestQuery/goRestQuery";
+} from "../../../../../../../../lib/axios/apiServices/goRestQuery/goRestQuery";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 

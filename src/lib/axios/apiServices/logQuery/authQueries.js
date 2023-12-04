@@ -1,4 +1,4 @@
-import { apiRequest } from "../../../lib/axios/logApi/index";
+import { apiRequest } from "../../logApi/index";
 
 const userLogin = async (value) => {
   try {

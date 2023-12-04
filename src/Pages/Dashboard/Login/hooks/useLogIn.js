@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../authQueries";
+import { userLogin } from "../../../../lib/axios/apiServices/logQuery/authQueries";
 import { setAuthToken } from "../../../../lib/axios/logApi";
 
 const useLogIn = () => {

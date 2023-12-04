@@ -1,5 +1,5 @@
 import axios from "axios";
-import goRestApiRequest from "../../../../lib/axios/goRestApi/index";
+import goRestApiRequest from "../../../axios/goRestApi/index";
 
 export const getUsers = async () => {
   const response = await axios.get(
