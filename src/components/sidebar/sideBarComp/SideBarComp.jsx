@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import profilepic from "../../../assets/profile.jpg";
 import useGetUser from "../../../customHooks/useGetUser";
 import useLogOut from "../../../customHooks/useLogOut";
-import { pages } from "../../../utility/utility";
+import { pages } from "src/utility/utility";
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState(pages);
 

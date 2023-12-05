@@ -1,11 +1,13 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/Dashboard/Home/index";
+import { lazy, Suspense } from "react";
 import Login from "./Pages/Dashboard/Login/Index";
 import Members from "./Pages/Dashboard/Members/Members";
 import Users from "./Pages/Dashboard/users/Users";
 import Trans from "./Pages/Dashboard/transactions/trans";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+const Home = lazy(() => import("src/Pages/Dashboard/Home/index"));
 function App() {
   return (
     <div className="">
@@ -19,11 +21,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
+                <Suspense fallback={<div>welcome...</div>}>
+                  <Home />
+                </Suspense>
               </ProtectedRoute>
             }
           />
