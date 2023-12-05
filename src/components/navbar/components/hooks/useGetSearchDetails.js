@@ -1,36 +1,3 @@
-// import { useRef, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { pages } from "src/utility/utility";
-
-// const useGetSearchDetails = () => {
-//   const keyRef = useRef("");
-//   const navigate = useNavigate();
-//   const [value, setValue] = useState("");
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const filteredPeople = pages.filter((person) => {
-//     return person.name.toLowerCase().includes(value.toLowerCase());
-//   });
-
-//   const handlePath = (name) => {
-//     navigate(`/${name}`);
-//   };
-//   const handleClick = () => {
-//     navigate(`/${value}`);
-//   };
-//   return {
-//     filteredPeople,
-//     handlePath,
-//     handleClick,
-//     keyRef,
-//     setValue,
-//     isOpen,
-//     setIsOpen,
-//   };
-// };
-
-// export default useGetSearchDetails;
-
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { pages } from "src/utility/utility";
@@ -41,19 +8,29 @@ const useGetSearchDetails = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
 
-  const filteredPeople = pages.filter((person) => {
-    return person.name.toLowerCase().includes(value.toLowerCase());
-  });
+  const [selected, setSelected] = useState(pages[0].name)
 
+
+  const filteredItems =
+  value === ''
+      ? pages
+      : pages.filter((person) =>
+          person.name
+            .toLowerCase()
+            .replace(/\s+/g, '')
+            .includes(value.toLowerCase().replace(/\s+/g, ''))
+        )
   const handlePath = (path) => {
     navigate(path);
   };
 
   return {
-    filteredPeople,
+    filteredItems,
     handlePath,
     manageKeyRef,
     setValue,
+    value,
+    selected, setSelected
   };
 };
 
