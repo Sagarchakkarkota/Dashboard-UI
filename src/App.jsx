@@ -16,24 +16,20 @@ function App() {
           <Route
             path="/login"
             element={
-              // <ProtectedRoute>
-              //   <Login />
-              // </ProtectedRoute>
-              <Login />
-
+              <ProtectedRoute>
+                <Login />
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/"
             element={
-              // <ProtectedRoute>
-              //   <Suspense fallback={<div>welcome...</div>}>
-              //     <Home />
-              //   </Suspense>
-              // </ProtectedRoute>
-              <Home />
-
+              <ProtectedRoute>
+                <Suspense fallback={<div>welcome...</div>}>
+                  <Home />
+                </Suspense>
+              </ProtectedRoute>
             }
           />
 
