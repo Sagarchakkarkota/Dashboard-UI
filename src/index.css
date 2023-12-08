@@ -14,3 +14,6 @@
 .tableBody {
   @apply flex justify-start flex-1 p-1;
 }
+.btnHoverPrimary {
+  @apply hover:shadow-testShadow  hover:bg-primary_blue hover:text-white cursor-pointer;
+}

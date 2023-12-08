@@ -38,6 +38,7 @@ export default {
       colors: {
         // Define the properties for your custom class
         button_green: "#CDF465",
+        primary_blue: "#1035BD",
       },
       gridTemplateColumns: {
         50: "repeat(8, 50px)", // Define a custom grid with 8 columns each 50px wide

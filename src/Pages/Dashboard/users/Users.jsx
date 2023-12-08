@@ -29,6 +29,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import SideBar from "../../../components/sidebar/SideBar";
+import AddModal from "./components/addModal";
 
 const dataList = [
   {
@@ -156,37 +157,18 @@ const dataList = [
 ];
 
 const Users = () => {
-  // const {  isLoading } = useQuery({
-  //   queryKey: ["users"],
-  //   queryFn: getUsers,
-  //   staleTime: 10000,
-  // });
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
   const [columnVisibility, setColumnVisibility] = useState({});
+  const [updatedData, setUpdatedData] = useState(dataList);
+  const [isOpen, setIsOpen] = useState(false);
 
   const tableColumns = [
     {
       header: "ID",
       accessorKey: "id",
     },
-    // {
-    //   header: "Name",
-    //   accessorFn: (row) => `${row.name} ${row.username}`,
-    // },
-    // {
-    //   header: "Name",
-    //   columns: [
-    //     {
-    //       header: "Name",
-    //       accessorKey: "name",
-    //     },
-    //     {
-    //       header: "Username",
-    //       accessorKey: "username",
-    //     },
-    //   ],
-    // },
+
     {
       header: "Name",
       accessorKey: "name",
@@ -207,7 +189,11 @@ const Users = () => {
     {
       header: "Website",
       accessorKey: "website",
-      cell: (info) => <a href="https://www.google.co.in/">{info.getValue()}</a>,
+      cell: (info) => (
+        <a className="text-[#7A71A4] " href="https://www.google.co.in/">
+          {info.getValue()}
+        </a>
+      ),
     },
 
     {
@@ -221,7 +207,7 @@ const Users = () => {
   ];
 
   const table = useReactTable({
-    data: dataList,
+    data: updatedData,
     columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -242,14 +228,14 @@ const Users = () => {
     onColumnVisibilityChange: setColumnVisibility,
   });
   const paginationState = table.getState();
-
+  console.log(updatedData);
   return (
-    <div className="flex lg:h-screen  bg-gradient-to-br  to-[#f1e8b1] w-full">
+    <div className="flex lg:h-screen  bg-[#FFF5FF] w-full text-[#3d3d3d]">
       <div className="flex w-full ">
         <SideBar />
         <div className=" w-full p-6">
           {/* SearchBar start */}
-          <div className="w-full flex justify-between items-center rounded-md border p-2 border-gray-200">
+          <div className="w-full flex justify-between items-center bg-[#7A71A4] shadow-lg  rounded-md border py-2 px-6 border-gray-200 ">
             <input
               type="text"
               value={filtering}
@@ -258,22 +244,20 @@ const Users = () => {
                 setFiltering(e.target.value);
               }}
               placeholder="SearchBar"
-              className="border boder-gray-300  focus:outline-none "
+              className=" focus:outline-none   duration-200  py-1 px-2 rounded-md"
             />
             <Popover>
               {({ open }) => (
                 <>
-                  <Popover.Button>
+                  <Popover.Button className="transform rotate-90 border-1 border-transparent text-xl text-[#FFF5FF] outline-none  focus:border-black duration-200 ">
                     {" "}
-                    <div className="transform rotate-90">
-                      <GiSettingsKnobs />
-                    </div>
+                    <GiSettingsKnobs />
                   </Popover.Button>
 
                   {/* Use the `Transition` component. */}
                   <Transition
                     show={open}
-                    enter="transition duration-100 ease-out"
+                    enter="transition duration-300 ease-out"
                     enterFrom="transform scale-95 opacity-0"
                     enterTo="transform scale-100 opacity-100"
                     leave="transition duration-75 ease-out"
@@ -282,13 +266,13 @@ const Users = () => {
                     className="relative"
                   >
                     {/* Mark this component as `static` */}
-                    <Popover.Panel className="absolute z-10 bg-white top-[-4px] right-0 ">
-                      <div className="inline-block border border-rounded w-40 h-50 p-4">
+                    <Popover.Panel className="absolute z-10 bg-[#faf8f8] text-[#3d3d3d]  top-[-4px] right-0 rounded-md ">
+                      <div className="inline-block  w-40 h-50 p-4">
                         {table.getAllLeafColumns().map((column) => {
                           return (
                             <div
                               key={column.id}
-                              className="px-1 border border-b-gray-200"
+                              className="px-1 border border-transparent border-b-[#cac9c9] "
                             >
                               <input
                                 {...{
@@ -309,15 +293,18 @@ const Users = () => {
             </Popover>
           </div>
           {/* Table start */}
-          <table className="w-full border boder-gray-300 bg-gray-200 my-4 ">
+          <table className="w-full  my-4 shadow-md  bg-[#FFF5FF] ">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => {
                 return (
-                  <tr key={headerGroup.id} className="border boder-gray-300 ">
+                  <tr
+                    key={headerGroup.id}
+                    className="border boder-gray-300 rounded-sm bg-[#dbd9d9] "
+                  >
                     {headerGroup.headers.map((header) => {
                       return (
                         <th
-                          className="p-2 "
+                          className="p-2 text-md text-[#616161] font-medium"
                           key={header.id}
                           onClick={header.column.getToggleSortingHandler()}
                         >
@@ -350,7 +337,7 @@ const Users = () => {
             <tbody className="text-sm">
               {table?.getRowModel().rows.map((row) => {
                 return (
-                  <tr key={row.id} className="border boder-gray-300  ">
+                  <tr key={row.id} className={`p-2 `}>
                     {row.getVisibleCells().map((cell) => {
                       return (
                         <td key={cell.id} className="p-2 ">
@@ -366,9 +353,9 @@ const Users = () => {
               })}
             </tbody>
           </table>
-          <div className="w-full flex justify-end ">
+          <div className="w-full flex justify-end  ">
             <button
-              className="border border-black px-2 mx-1 rounded-sm "
+              className="border border-transparent  cursor-pointer hover:border-[#7A71A4] active:bg-[#7A71A4] disabled:border-[#FFF5FF] disabled-bg-[#FFF5FF] disabled:cursor-not-allowed  mx-2 rounded-[30px]  p-2 duration-500 "
               disabled={!table.getCanPreviousPage()}
               onClick={() => {
                 table.previousPage();
@@ -376,9 +363,11 @@ const Users = () => {
             >
               <IoIosArrowRoundBack />
             </button>
-            {paginationState.pagination.pageIndex + 1}/{table.getPageCount()}
+            <div className="text-sm p-2">
+              {paginationState.pagination.pageIndex + 1}/{table.getPageCount()}
+            </div>
             <button
-              className="border border-black px-2 mx-1 rounded-sm"
+              className="border  border-transparent cursor-pointer  hover:border-[#7A71A4] active:bg-[#7A71A4] disabled:border-[#FFF5FF] disabled-bg-[#FFF5FF] disabled:cursor-not-allowed mx-2 rounded-[30px]  p-2  duration-500 "
               disabled={!table.getCanNextPage()}
               onClick={() => {
                 table.nextPage();
@@ -386,6 +375,22 @@ const Users = () => {
             >
               <IoIosArrowRoundForward />
             </button>
+          </div>
+          <div>
+            <button
+              className="cursor-pointer bg-[#7A71A4] p-2 rounded-md text-[#FFF5FF] active:bg-[#4b436b]"
+              onClick={() => setIsOpen(true)}
+            >
+              Add Members
+            </button>
+            {isOpen && (
+              <AddModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setUpdatedData={setUpdatedData}
+                updatedData={updatedData}
+              />
+            )}
           </div>
         </div>
       </div>
