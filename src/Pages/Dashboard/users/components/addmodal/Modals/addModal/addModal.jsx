@@ -27,7 +27,7 @@ export default function AddModal({
     setValue({ ...value, [e.target.name]: e.target.value });
   };
   const handleAddMember = () => {
-    setUpdatedData({ ...updatedData, value });
+    setUpdatedData([...updatedData, value]);
     setValue({
       id: "",
       name: "",

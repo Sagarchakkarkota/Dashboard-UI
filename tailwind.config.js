@@ -36,12 +36,14 @@ export default {
 
     extend: {
       colors: {
-        // Define the properties for your custom class
         button_green: "#CDF465",
         primary_blue: "#1035BD",
+        background_white: "#FFF5FF",
+        primary_color: "#7A71A4",
+        text_gray: "#3d3d3d",
       },
       gridTemplateColumns: {
-        50: "repeat(8, 50px)", // Define a custom grid with 8 columns each 50px wide
+        50: "repeat(8, 50px)",
       },
       boxShadow: {
         testShadow: " 0px 0px 20px 4px rgba(199,199,199,1)",

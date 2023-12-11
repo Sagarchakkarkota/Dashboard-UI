@@ -6,8 +6,9 @@ import Members from "./Pages/Dashboard/Members/Members";
 import Users from "./Pages/Dashboard/users/Users";
 import Trans from "./Pages/Dashboard/transactions/trans";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Home from "./Pages/Dashboard/Home";
 
-const Home = lazy(() => import("src/Pages/Dashboard/Home/index"));
+// const Home = lazy(() => import("src/Pages/Dashboard/Home/index"));
 function App() {
   return (
     <div className="">
@@ -16,21 +17,23 @@ function App() {
           <Route
             path="/login"
             element={
-              <ProtectedRoute>
-                <Login />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Login />
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/"
-            element={
-              <ProtectedRoute>
-                <Suspense fallback={<div>welcome...</div>}>
-                  <Home />
-                </Suspense>
-              </ProtectedRoute>
-            }
+            element={<Home />}
+            // element={
+            // <ProtectedRoute>
+            // {/* <Suspense fallback={<div>welcome...</div>}> */}
+            // <Home />
+            // {/* </Suspense> */}
+            // </ProtectedRoute>
+
+            // }
           />
 
           <Route path="/members/:id" element={<Members />} />
