@@ -1,35 +1,51 @@
 import { useState } from "react";
 import SideBar from "../../../components/sidebar/SideBar";
-import AddModal from "./components/addmodal/Modals/addModal/addModal";
+import AddModal from "./components/addModal";
 import Table from "./components/table";
 import { dataList } from "./ulitily";
-
+import EditModal from "./components/editModal/index";
 const Users = () => {
   const [updatedData, setUpdatedData] = useState(dataList);
   const [isOpen, setIsOpen] = useState(false);
   const [editValue, setEditValue] = useState(false);
+  const [editmodalShow, setEditmodalShow] = useState(false);
+
   const handleEdit = (value) => {
-    console.log(value);
-    setIsOpen(true);
     setEditValue(value);
+    setEditmodalShow(true);
+  };
+
+  const handleDelete = (id) => {
+    const newData = updatedData.filter((item) => item.id !== id);
+    setUpdatedData(newData);
   };
   return (
     <div className="flex lg:h-screen  bg-background_white w-full text-text_gray">
       <div className="flex w-full ">
         <SideBar />
         <div className="w-full">
-          <Table updatedData={updatedData} handleEdit={handleEdit} />
+          <Table
+            updatedData={updatedData}
+            handleEdit={handleEdit}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            handleDelete={handleDelete}
+          />
           <div>
-            <button
-              className="cursor-pointer bg-primary_color p-2 rounded-md text-background_white active:bg-[#4b436b]"
-              onClick={() => setIsOpen(true)}
-            >
-              Add Members
-            </button>
-            {isOpen && (
+            {isOpen && !editmodalShow && (
               <AddModal
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
+                setUpdatedData={setUpdatedData}
+                updatedData={updatedData}
+              />
+            )}
+
+            {editmodalShow && (
+              <EditModal
+                editmodalShow={editmodalShow}
+                setEditmodalShow={setEditmodalShow}
+                editValue={editValue}
                 setUpdatedData={setUpdatedData}
                 updatedData={updatedData}
               />

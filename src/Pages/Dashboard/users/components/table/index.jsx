@@ -15,10 +15,15 @@ import { Popover, Transition } from "@headlessui/react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import useGetTableDetails from "./hooks/useGetTableDetails";
-import { useQuery } from "@tanstack/react-query";
-import { getMember } from "src/lib/axios/apiServices/goRestQuery/goRestQuery";
 
-const Table = ({ updatedData, handleEdit }) => {
+import { useState } from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { IoMdPersonAdd } from "react-icons/io";
+import { Toaster } from "react-hot-toast";
+const Table = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
+  const [showItem, setShowItem] = useState(false);
+  const [popOverSelectedId, setPopOverSelectedId] = useState(false);
   const {
     sorting,
     setSorting,
@@ -30,7 +35,7 @@ const Table = ({ updatedData, handleEdit }) => {
 
   const tableColumns = [
     {
-      header: "ID",
+      header: "#",
       accessorKey: "id",
     },
 
@@ -62,18 +67,49 @@ const Table = ({ updatedData, handleEdit }) => {
     },
 
     {
-      header: "Edit",
-      cell: ({ row }) => (
-        <button onClick={() => handleEdit(row.original)}>
-          {/* <HiDotsVertical /> */}
-          Edit
-        </button>
-      ),
+      header: "edit",
+      cell: ({ row }) => {
+        return (
+          <div className="relative">
+            <button
+              onClick={() => {
+                setShowItem(!showItem);
+                setPopOverSelectedId(row.original.id);
+              }}
+            >
+              <HiDotsVertical />
+            </button>
+            {showItem && row.original.id === popOverSelectedId && (
+              <div className="py-2 bg-gray-400 rounded-xl z-10 absolute top-6 right-0 flex justify-center  ">
+                <button
+                  className="p-2 m-1 bg-gray-700 text-white  rounded-md"
+                  onClick={() => {
+                    handleEdit(row.original);
+                    setShowItem(false);
+                  }}
+                >
+                  <FaRegEdit />
+                </button>
+                <button
+                  className="p-2 m-1 bg-gray-700 text-white  rounded-md"
+                  onClick={() => {
+                    handleDelete(row.original.id);
+                    setShowItem(false);
+                  }}
+                >
+                  <AiTwotoneDelete />
+                </button>
+              </div>
+            )}
+          </div>
+        );
+      },
     },
   ];
 
   const table = useReactTable({
     data: updatedData,
+
     columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -81,7 +117,7 @@ const Table = ({ updatedData, handleEdit }) => {
     getFilteredRowModel: getFilteredRowModel(),
     initialState: {
       pagination: {
-        pageSize: 5,
+        pageSize: 8,
       },
     },
     state: {
@@ -95,19 +131,31 @@ const Table = ({ updatedData, handleEdit }) => {
   });
   const paginationState = table.getState();
   return (
-    <div className=" w-full p-6">
+    <div className=" w-full p-6 ">
       {/* SearchBar start */}
       <div className="w-full flex justify-between items-center bg-primary_color shadow-lg  rounded-md border py-2 px-6 border-gray-200 ">
-        <input
-          type="text"
-          value={filtering}
-          onChange={(e) => {
-            <label htmlFor="">Search</label>;
-            setFiltering(e.target.value);
-          }}
-          placeholder="SearchBar"
-          className=" focus:outline-none   duration-200  py-1 px-2 rounded-md"
-        />
+        <div className="flex flex-row ">
+          {" "}
+          <input
+            type="text"
+            value={filtering}
+            onChange={(e) => {
+              <label htmlFor="">Search</label>;
+              setFiltering(e.target.value);
+            }}
+            placeholder="SearchBar"
+            className=" focus:outline-none   duration-200  py-1 px-2 rounded-md"
+          />
+          <div>
+            <button
+              className="cursor-pointer bg-primary_color py-2 px-4 mx-2 rounded-md text-background_white active:bg-[#4b436b]"
+              onClick={() => setIsOpen(true)}
+            >
+              <IoMdPersonAdd />
+            </button>
+            <Toaster />
+          </div>
+        </div>
         <Popover>
           {({ open }) => (
             <>
