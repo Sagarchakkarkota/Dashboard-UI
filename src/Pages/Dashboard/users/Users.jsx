@@ -1,14 +1,20 @@
-import { useState } from "react";
 import SideBar from "../../../components/sidebar/SideBar";
 import AddModal from "./components/addModal";
-import Table from "./components/table";
-import { dataList } from "./ulitily";
+import UserPage from "./components/table";
 import EditModal from "./components/editModal/index";
+import useGetUsers from "./hooks/useGetUsers";
+import toast from "react-hot-toast";
 const Users = () => {
-  const [updatedData, setUpdatedData] = useState(dataList);
-  const [isOpen, setIsOpen] = useState(false);
-  const [editValue, setEditValue] = useState(false);
-  const [editmodalShow, setEditmodalShow] = useState(false);
+  const {
+    isOpen,
+    setIsOpen,
+    updatedData,
+    setUpdatedData,
+    editValue,
+    setEditValue,
+    editmodalShow,
+    setEditmodalShow,
+  } = useGetUsers();
 
   const handleEdit = (value) => {
     setEditValue(value);
@@ -18,13 +24,17 @@ const Users = () => {
   const handleDelete = (id) => {
     const newData = updatedData.filter((item) => item.id !== id);
     setUpdatedData(newData);
+    toast.success("Deleted User Successfully", {
+      duration: 4000,
+      position: "bottom-right",
+    });
   };
   return (
     <div className="flex lg:h-screen  bg-background_white w-full text-text_gray">
       <div className="flex w-full ">
         <SideBar />
         <div className="w-full">
-          <Table
+          <UserPage
             updatedData={updatedData}
             handleEdit={handleEdit}
             isOpen={isOpen}

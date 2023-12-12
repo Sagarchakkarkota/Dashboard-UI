@@ -57,7 +57,7 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
             Niond
           </h1>
         </Link>
-        <Disclosure>
+        <Disclosure defaultOpen={true}>
           {({ open }) => (
             /* Use the `open` state to conditionally change the direction of an icon. */
             <>

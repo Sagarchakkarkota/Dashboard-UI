@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import toast from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
 import Input from "src/UI/Input";
 export default function EditModal({
@@ -33,6 +34,10 @@ export default function EditModal({
     const updatedUsers = [...updatedData];
     updatedUsers.splice(index, 1, value);
     setUpdatedData(updatedUsers);
+    toast.success("Edited User Successfully", {
+      duration: 4000,
+      position: "bottom-right",
+    });
   };
   return (
     <>
