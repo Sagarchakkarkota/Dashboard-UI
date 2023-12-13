@@ -1,26 +1,34 @@
-import Input from "../../../UI/Input";
+import { useForm } from "react-hook-form";
+import Input from "../../../UI/input/Index";
 import useLogIn from "./hooks/useLogIn";
 
 const Login = () => {
-  const { value, setValue, handleSubmit } = useLogIn();
+  const { mutation } = useLogIn();
 
-  const handleChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { email: "", password: "", device_name: "windows" },
+  });
+
+  const onSubmit = (value) => {
+    mutation.mutate(value);
   };
   return (
     <div>
       <div className="  w-full py flex py-10 justify-center items-center bg-[ #F2F3F4] ">
         <div className=" flex flex-col shadow-testShadow items-center justify-center  w-[400px] p-4 ">
           <h1 className="text-3xl ">Log In</h1>
-          <form action="">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="w-full  py-2 text-black">
               <Input
                 label="Email"
                 type="text"
                 name="email"
-                id="email"
-                value={value.email}
-                onChange={handleChange}
+                register={register}
+                error={errors?.email}
               />
             </div>
             <div className="w-full py-2 ">
@@ -28,14 +36,13 @@ const Login = () => {
                 label="Password"
                 type="password"
                 name="password"
-                id="password"
-                value={value.password}
-                onChange={handleChange}
+                register={register}
+                error={errors?.password}
               />
             </div>
 
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="my-2 p-1 px-4 rounded-2xl border-[1px] border-gray-600 hover:bg-black hover:text-white "
             >
               Submit

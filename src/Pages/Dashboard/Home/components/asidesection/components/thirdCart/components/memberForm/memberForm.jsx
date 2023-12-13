@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -6,8 +7,14 @@ import { setIsModal, setMembers } from "src/Pages/Dashboard/Home/MemberSlice";
 import Input from "src/UI/input/Index";
 import Modal from "src/components/modal/index";
 import { addNewMember } from "src/lib/axios/apiServices/goRestQuery/goRestQuery";
-
-const AddMemberModal = () => {
+import * as Yup from "yup";
+const schema = Yup.object({
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().required("Email is required"),
+  gender: Yup.string().required("Gender is required"),
+  status: Yup.string().required("Status is required eg.active/inactive"),
+});
+const MemberForm = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isModal = useSelector((state) => state.member.isModal);
@@ -37,6 +44,7 @@ const AddMemberModal = () => {
       gender: "",
       status: "inactive",
     },
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = (values) => {
@@ -105,4 +113,4 @@ const AddMemberModal = () => {
   );
 };
 
-export default AddMemberModal;
+export default MemberForm;

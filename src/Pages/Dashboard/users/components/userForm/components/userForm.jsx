@@ -1,48 +1,24 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import Input from "src/UI/input/Index";
 import Modal from "src/components/modal";
-import Input from "../../../../../../../../../UI/input/Index";
-import { editMember } from "../../../../../../../../../lib/axios/apiServices/goRestQuery/goRestQuery";
 
-export default function EditModal({ isOpen, setIsOpen, value }) {
-  const { id, name, email, gender, status } = value;
-  const queryClient = useQueryClient();
-
+export default function UseForm({
+  isOpen,
+  onSubmit,
+  closeModal,
+  defaultValues,
+}) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      id: id,
-      name: name,
-      email: email,
-      gender: gender,
-      status: status,
-    },
+    defaultValues: defaultValues,
   });
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const mutation = useMutation({
-    mutationFn: (mutateData) => {
-      return editMember(mutateData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["member"] });
-    },
-  });
-
-  const onSubmit = (value) => {
-    console.log(value);
-    mutation.mutate(value);
-    closeModal();
-  };
   return (
     <>
-      <Modal showModal={isOpen} closeModal={closeModal} Title="Edit Member">
+      <Modal showModal={isOpen} closeModal={closeModal} Title="Add Details">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-2 flex flex-col gap-2">
             <Input
@@ -54,24 +30,31 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
             />
             <Input
               type="text"
+              name="username"
+              register={register}
+              error={errors?.username}
+              placeholder="Username"
+            />
+            <Input
+              type="text"
               name="email"
               register={register}
               error={errors?.email}
               placeholder="Email"
             />
             <Input
-              type="text"
-              name="gender"
+              type="phone"
+              name="phone"
               register={register}
-              error={errors?.gender}
-              placeholder="Gender"
+              error={errors?.phone}
+              placeholder="Phone"
             />
             <Input
               type="text"
-              name="status"
+              name="website"
               register={register}
-              error={errors?.status}
-              placeholder="Status"
+              error={errors?.website}
+              placeholder="Website"
             />
           </div>
 

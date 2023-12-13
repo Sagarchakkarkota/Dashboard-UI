@@ -1,9 +1,9 @@
-import SideBar from "../../../components/sidebar/SideBar";
-import AddModal from "./components/addModal";
-import UserPage from "./components/table";
-import EditModal from "./components/editModal/index";
-import useGetUsers from "./hooks/useGetUsers";
 import toast from "react-hot-toast";
+import SideBar from "../../../components/sidebar/SideBar";
+import UserPage from "./components/table";
+import AddUserForm from "./components/userForm/addUserForm";
+import EditUserForm from "./components/userForm/editUserForm";
+import useGetUsers from "./hooks/useGetUsers";
 const Users = () => {
   const {
     isOpen,
@@ -43,7 +43,7 @@ const Users = () => {
           />
           <div>
             {isOpen && !editmodalShow && (
-              <AddModal
+              <AddUserForm
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 setUpdatedData={setUpdatedData}
@@ -52,7 +52,7 @@ const Users = () => {
             )}
 
             {editmodalShow && (
-              <EditModal
+              <EditUserForm
                 editmodalShow={editmodalShow}
                 setEditmodalShow={setEditmodalShow}
                 editValue={editValue}

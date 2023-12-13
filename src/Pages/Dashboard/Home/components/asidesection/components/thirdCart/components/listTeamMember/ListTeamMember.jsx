@@ -28,25 +28,32 @@ const ListTeamMember = ({ value, handleEdit, handleDelete }) => {
           <MdOutlineKeyboardArrowDown />
         </div>
         {show && (
-          <div className="py-2 bg-gray-400 rounded-xl z-10 absolute top-7 right-0 ">
-            <button
-              onClick={() => {
-                handleEdit(value);
-                setShow();
-              }}
-              className="p-2 m-1 bg-gray-700 text-white rounded-md"
-            >
-              <FaRegEdit />
-            </button>
-            <button
-              onClick={() => {
-                handleDelete(id);
-                setShow();
-              }}
-              className="p-2 m-1 bg-gray-700 text-white  rounded-md"
-            >
-              <AiTwotoneDelete />
-            </button>
+          <div className=" py-2 bg-gray-500 rounded-xl z-10 absolute top-6 right-0 flex justify-center  ">
+            <div className="p-2 m-1  ">
+              <button
+                className="w-full p-2 m-1 bg-gray-700 text-white flex justify-center rounded-md"
+                onClick={() => {
+                  handleEdit(value);
+                  setShow();
+                }}
+              >
+                <FaRegEdit />
+              </button>
+              <p className="w-full flex justify-center text-white">Edit</p>
+            </div>
+            <div className="p-2 m-1 ">
+              <button
+                className="w-full p-2 m-1 bg-red-500 text-white flex justify-center rounded-md"
+                onClick={() => {
+                  handleDelete(id);
+                  setShow();
+                }}
+              >
+                <AiTwotoneDelete />
+              </button>
+
+              <p className="w-full flex justify-center text-white">Delete</p>
+            </div>
           </div>
         )}
       </div>
