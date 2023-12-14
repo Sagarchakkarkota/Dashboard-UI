@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import Modal from "src/components/modal";
 import Input from "../../../../../../../../../UI/input/Index";
 import { editMember } from "../../../../../../../../../lib/axios/apiServices/goRestQuery/goRestQuery";
+import Select from "src/UI/select";
+import { selectGender } from "./utility";
 
 export default function EditModal({ isOpen, setIsOpen, value }) {
   const { id, name, email, gender, status } = value;
@@ -51,6 +53,13 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               register={register}
               error={errors?.name}
               placeholder="Name"
+              validations={{
+                required: "Name is required",
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: "Name should not contain numbers",
+                },
+              }}
             />
             <Input
               type="text"
@@ -58,13 +67,20 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               register={register}
               error={errors?.email}
               placeholder="Email"
+              validations={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  message: "Enter valid email address eg.demo@gmail.com",
+                },
+              }}
             />
-            <Input
-              type="text"
-              name="gender"
+            <Select
               register={register}
               error={errors?.gender}
               placeholder="Gender"
+              name="gender"
+              selectOptions={selectGender}
             />
             <Input
               type="text"

@@ -17,3 +17,9 @@
 .btnHoverPrimary {
   @apply hover:shadow-testShadow  hover:bg-primary_blue hover:text-white cursor-pointer;
 }
+.textCenter {
+  @apply w-full text-xs flex justify-center py-1;
+}
+.popupIcon {
+  @apply w-full text-sm p-2 flex justify-center rounded-md;
+}

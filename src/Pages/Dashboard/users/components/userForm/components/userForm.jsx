@@ -27,13 +27,36 @@ export default function UseForm({
               register={register}
               error={errors?.name}
               placeholder="Name"
+              validations={{
+                required: "Name is required",
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: "Name should not contain numbers",
+                },
+              }}
             />
+            {/* <Input
+              type="file"
+              name="username"
+              register={register}
+              error={errors?.username}
+              placeholder="Username"
+            /> */}
+            <input
+              type="file"
+              accept="image/png"
+              {...register("photo", { required: "Photo is required" })}
+            />
+
             <Input
               type="text"
               name="username"
               register={register}
               error={errors?.username}
               placeholder="Username"
+              validations={{
+                required: "Username is required",
+              }}
             />
             <Input
               type="text"
@@ -41,6 +64,13 @@ export default function UseForm({
               register={register}
               error={errors?.email}
               placeholder="Email"
+              validations={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  message: "Enter valid email address eg.demo@gmail.com",
+                },
+              }}
             />
             <Input
               type="phone"
@@ -48,6 +78,9 @@ export default function UseForm({
               register={register}
               error={errors?.phone}
               placeholder="Phone"
+              validations={{
+                required: "Phone is required",
+              }}
             />
             <Input
               type="text"
@@ -55,6 +88,9 @@ export default function UseForm({
               register={register}
               error={errors?.website}
               placeholder="Website"
+              validations={{
+                required: "Website is required",
+              }}
             />
           </div>
 

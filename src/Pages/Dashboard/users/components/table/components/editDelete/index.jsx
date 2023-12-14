@@ -17,10 +17,10 @@ const EditDelete = ({ row, handleDelete, handleEdit }) => {
         <HiDotsVertical />
       </button>
       {showItem && row.original.id === popOverSelectedId && (
-        <div className=" py-2 bg-gray-500 rounded-xl z-10 absolute top-6 right-0 flex justify-center  ">
-          <div className="p-2 m-1  ">
+        <div className=" p-2 bg-primary_color rounded-xl z-10 absolute top-6 right-0 flex justify-center   ">
+          <div className="px-2 py-1 ">
             <button
-              className="w-full p-2 m-1 bg-gray-700 text-white flex justify-center rounded-md"
+              className="bg-gray-700 text-white popupIcon"
               onClick={() => {
                 handleEdit(row.original);
                 setShowItem(false);
@@ -28,11 +28,11 @@ const EditDelete = ({ row, handleDelete, handleEdit }) => {
             >
               <FaRegEdit />
             </button>
-            <p className="w-full flex justify-center text-white">Edit</p>
+            <p className="textCenter text-white">Edit</p>
           </div>
-          <div className="p-2 m-1 ">
+          <div className="px-2 py-1  ">
             <button
-              className="w-full p-2 m-1 bg-red-500 text-white flex justify-center rounded-md"
+              className="popupIcon bg-red-500 text-white"
               onClick={() => {
                 handleDelete(row.original.id);
                 setShowItem(false);
@@ -41,7 +41,7 @@ const EditDelete = ({ row, handleDelete, handleEdit }) => {
               <AiTwotoneDelete />
             </button>
 
-            <p className="w-full flex justify-center text-white">Delete</p>
+            <p className="textCenter text-white">Delete</p>
           </div>
         </div>
       )}

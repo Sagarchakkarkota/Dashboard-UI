@@ -2,7 +2,7 @@ import { apiRequest } from "../../logApi/index";
 
 const userLogin = async (value) => {
   try {
-    const res = await apiRequest.post("/login", value);
+    const res = await apiRequest.post("/sellers/login", value);
     return res;
   } catch (error) {
     throw new Error("Failed to fetch user data");
@@ -11,7 +11,7 @@ const userLogin = async (value) => {
 
 const userLogOut = async () => {
   try {
-    const res = await apiRequest.post("/logout", {});
+    const res = await apiRequest.post("/sellers/logout", {});
     return res;
   } catch (error) {
     throw new Error("Failed to fetch user data");

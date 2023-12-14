@@ -1,18 +1,24 @@
 import React from "react";
 
-const Input = ({ type, name, register, error, placeholder, label }) => {
+const Input = ({
+  type,
+  name,
+  register,
+  error,
+  placeholder,
+  label,
+  validations,
+}) => {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
       <input
         className="border p-2 border-black rounded-md w-full"
         type={type}
-        {...register(name, {
-          required: ` ${label || placeholder} Address is required`,
-        })}
+        {...register(name, validations)}
         placeholder={placeholder}
       />
-      {error && <p className="text-red-600 text-xs">{error?.message}</p>}
+      {error && <p className="text-red-600 px-1 text-xs">{error?.message}</p>}
     </div>
   );
 };

@@ -37,6 +37,16 @@ const UserPage = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
     },
 
     {
+      header: "photo",
+      accessorKey: "photo",
+
+      cell: ({ row }) => {
+        // return console.log(row.original.photo);
+        return <img src={row.original.photo} className="h-8 w-8 rounded-2xl" />;
+      },
+    },
+
+    {
       header: "Name",
       accessorKey: "name",
     },

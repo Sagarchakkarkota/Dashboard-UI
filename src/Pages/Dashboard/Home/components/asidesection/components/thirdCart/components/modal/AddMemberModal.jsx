@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsModal, setMembers } from "src/Pages/Dashboard/Home/MemberSlice";
 import Input from "src/UI/input/Index";
+import Select from "src/UI/select";
 import Modal from "src/components/modal/index";
 import { addNewMember } from "src/lib/axios/apiServices/goRestQuery/goRestQuery";
+import { selectGender } from "./utility";
 
 const AddMemberModal = () => {
   const dispatch = useDispatch();
@@ -67,6 +69,13 @@ const AddMemberModal = () => {
               register={register}
               error={errors?.name}
               placeholder="Name"
+              validations={{
+                required: "Name is required",
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: "Name should not contain numbers",
+                },
+              }}
             />
             <Input
               type="text"
@@ -74,14 +83,34 @@ const AddMemberModal = () => {
               register={register}
               error={errors?.email}
               placeholder="Email"
+              validations={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  message: "Enter valid email address eg.demo@gmail.com",
+                },
+              }}
             />
-            <Input
-              type="text"
-              name="gender"
+            {/* <select
+              type="select"
+              className="border p-2 border-black rounded-md w-full"
+              {...register("gender", { required: "Gender is required" })}
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select Gender
+              </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select> */}
+            <Select
               register={register}
               error={errors?.gender}
               placeholder="Gender"
+              name="gender"
+              selectOptions={selectGender}
             />
+
             <Input
               type="text"
               name="status"

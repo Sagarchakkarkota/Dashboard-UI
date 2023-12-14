@@ -10,7 +10,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { email: "", password: "", device_name: "windows" },
+    defaultValues: { email: "", password: "", device_name: "MacIntel" },
   });
 
   const onSubmit = (value) => {
@@ -29,6 +29,13 @@ const Login = () => {
                 name="email"
                 register={register}
                 error={errors?.email}
+                validations={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                    message: "Enter valid email address eg.demo@gmail.com",
+                  },
+                }}
               />
             </div>
             <div className="w-full py-2 ">
