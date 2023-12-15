@@ -4,6 +4,7 @@ import UserPage from "./components/table";
 import AddUserForm from "./components/userForm/addUserForm";
 import EditUserForm from "./components/userForm/editUserForm";
 import useGetUsers from "./hooks/useGetUsers";
+import Toast from "src/UI/toast";
 const Users = () => {
   const {
     isOpen,
@@ -24,10 +25,7 @@ const Users = () => {
   const handleDelete = (id) => {
     const newData = updatedData.filter((item) => item.id !== id);
     setUpdatedData(newData);
-    toast.success("Deleted User Successfully", {
-      duration: 4000,
-      position: "bottom-right",
-    });
+    toast.error(<Toast message={"Deleted User Successfully"} />);
   };
   return (
     <div className="flex lg:h-screen  bg-background_white w-full text-text_gray">

@@ -37,19 +37,21 @@ const UserPage = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
     },
 
     {
-      header: "photo",
-      accessorKey: "photo",
-
+      header: "Name",
       cell: ({ row }) => {
-        // return console.log(row.original.photo);
-        return <img src={row.original.photo} className="h-8 w-8 rounded-2xl" />;
+        return (
+          <div className="flex jutify-center items-center pr-4">
+            <img
+              src={row.original.photo}
+              className="h-8 w-8 rounded-2xl pr-1"
+              alt="User"
+            />
+            <div>{row.original.name}</div>
+          </div>
+        );
       },
     },
 
-    {
-      header: "Name",
-      accessorKey: "name",
-    },
     {
       header: "Username",
       accessorKey: "username",
@@ -67,7 +69,10 @@ const UserPage = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
       header: "Website",
       accessorKey: "website",
       cell: (info) => (
-        <a className="text-primary_color " href="https://www.google.co.in/">
+        <a
+          className="text-primary_color whitespace-pre-wrap "
+          href="https://www.google.co.in/"
+        >
           {info.getValue()}
         </a>
       ),

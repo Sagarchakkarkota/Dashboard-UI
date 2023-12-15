@@ -15,7 +15,20 @@ export default function UseForm({
   } = useForm({
     defaultValues: defaultValues,
   });
+  const validateImage = (value) => {
+    const file = value[0];
 
+    if (file.size > 50000) {
+      return "File size exceeds 50KB limit";
+    }
+
+    const allowedTypes = ["image/jpeg", "image/png", "image/svg+xml"];
+    if (!allowedTypes.includes(file.type)) {
+      return "Allowed file types: JPG, PNG, SVG";
+    }
+
+    return true;
+  };
   return (
     <>
       <Modal showModal={isOpen} closeModal={closeModal} Title="Add Details">
@@ -30,8 +43,8 @@ export default function UseForm({
               validations={{
                 required: "Name is required",
                 pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: "Name should not contain numbers",
+                  value: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/,
+                  message: "Please enter valid name",
                 },
               }}
             />
@@ -42,11 +55,20 @@ export default function UseForm({
               error={errors?.username}
               placeholder="Username"
             /> */}
+            <label htmlFor="photo">Profile Picture</label>
             <input
               type="file"
-              accept="image/png"
-              {...register("photo", { required: "Photo is required" })}
+              accept=".jpg, .jpeg, .png, .svg"
+              {...register("photo", {
+                validate: validateImage,
+                required: "Photo is required",
+              })}
             />
+            {errors?.photo && (
+              <p className="text-red-600 px-1 text-xs">
+                {errors?.photo.message}
+              </p>
+            )}
 
             <Input
               type="text"
@@ -55,7 +77,7 @@ export default function UseForm({
               error={errors?.username}
               placeholder="Username"
               validations={{
-                required: "Username is required",
+                required: "Please Select Image",
               }}
             />
             <Input
@@ -67,7 +89,7 @@ export default function UseForm({
               validations={{
                 required: "Email is required",
                 pattern: {
-                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: "Enter valid email address eg.demo@gmail.com",
                 },
               }}
@@ -80,6 +102,10 @@ export default function UseForm({
               placeholder="Phone"
               validations={{
                 required: "Phone is required",
+                pattern: {
+                  value: /^\d{3}-\d{3}-\d{4}$/,
+                  message: "Enter Valid phone number eg.666-525-5502",
+                },
               }}
             />
             <Input

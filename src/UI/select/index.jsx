@@ -8,7 +8,6 @@ const Select = ({
   placeholder,
   selectOptions,
 }) => {
-  console.log(selectOptions);
   return (
     <>
       <label htmlFor={name}>{label}</label>

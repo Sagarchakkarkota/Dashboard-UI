@@ -1,5 +1,5 @@
 import { Popover, Transition } from "@headlessui/react";
-import { Toaster } from "react-hot-toast";
+import HotToast from "src/components/hotToast";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { IoMdPersonAdd } from "react-icons/io";
 
@@ -25,7 +25,7 @@ const SearchBar = ({ table, filtering, setFiltering, setIsOpen }) => {
           >
             <IoMdPersonAdd />
           </button>
-          <Toaster />
+          <HotToast />
         </div>
       </div>
       <Popover>

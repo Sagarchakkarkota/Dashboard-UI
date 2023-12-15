@@ -8,11 +8,14 @@ import Select from "src/UI/select";
 import Modal from "src/components/modal/index";
 import { addNewMember } from "src/lib/axios/apiServices/goRestQuery/goRestQuery";
 import { selectGender } from "./utility";
-
+import { useState } from "react";
+import SelectListBox from "src/components/selectListBox";
+import { Listbox, Transition } from "@headlessui/react";
 const AddMemberModal = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isModal = useSelector((state) => state.member.isModal);
+  const [selectedPerson, setSelectedPerson] = useState(selectGender[0]);
 
   const mutation = useMutation({
     mutationFn: (mutateData) => {
@@ -30,6 +33,7 @@ const AddMemberModal = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -42,6 +46,8 @@ const AddMemberModal = () => {
   });
 
   const onSubmit = (values) => {
+    console.log(values);
+    // const newValue = { ...values, gender: selectedPerson.value };
     const { id, name, email, gender, status } = values;
     mutation.mutate({
       id: id,
@@ -72,11 +78,28 @@ const AddMemberModal = () => {
               validations={{
                 required: "Name is required",
                 pattern: {
-                  value: /^[A-Za-z]+$/,
+                  value: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/,
                   message: "Name should not contain numbers",
                 },
               }}
             />
+
+            <SelectListBox
+              options={selectGender}
+              selectedPerson={selectedPerson}
+              setSelectedPerson={setSelectedPerson}
+              register={register}
+              name="gender"
+              errors={errors}
+              setValue={setValue}
+            />
+
+            {errors?.gender && (
+              <p className="text-red-600 px-1 text-xs">
+                {errors?.gender?.message}
+              </p>
+            )}
+
             <Input
               type="text"
               name="email"
@@ -86,7 +109,7 @@ const AddMemberModal = () => {
               validations={{
                 required: "Email is required",
                 pattern: {
-                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: "Enter valid email address eg.demo@gmail.com",
                 },
               }}
@@ -103,13 +126,16 @@ const AddMemberModal = () => {
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select> */}
-            <Select
+            {/* <Select
               register={register}
               error={errors?.gender}
               placeholder="Gender"
               name="gender"
               selectOptions={selectGender}
-            />
+              validations={{
+                required: "Gender is required",
+              }}
+            /> */}
 
             <Input
               type="text"
@@ -117,6 +143,9 @@ const AddMemberModal = () => {
               register={register}
               error={errors?.status}
               placeholder="Status"
+              validations={{
+                required: "Status is required",
+              }}
             />
           </div>
 

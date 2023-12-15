@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import UseForm from "../components/userForm";
 import { IoCloseOutline } from "react-icons/io5";
+import Toast from "src/UI/toast";
 
 export default function AddUserForm({
   isOpen,
@@ -36,24 +37,10 @@ export default function AddUserForm({
       return item.username.toLowerCase() == value.username.toLowerCase();
     });
     if (ExsistingUsers) {
-      toast.error("Userame already exists", {
-        duration: 4000,
-        position: "bottom-right",
-      });
+      toast.error(<Toast message={"Userame already exists"} />);
     } else {
       setUpdatedData([value, ...updatedData]);
-      toast.success(
-        <div className=" flex justify-between">
-          <p className="px-2">New Member Added Successfully</p>
-          <button onClick={() => toast.dismiss()} className="text-red-500">
-            <IoCloseOutline />
-          </button>
-        </div>,
-        {
-          duration: 8000,
-          position: "bottom-left",
-        }
-      );
+      toast.success(<Toast message={"New Member Added Successfully"} />);
       reset();
       closeModal();
     }

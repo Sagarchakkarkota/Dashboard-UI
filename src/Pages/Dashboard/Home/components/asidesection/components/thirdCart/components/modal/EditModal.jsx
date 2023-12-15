@@ -56,7 +56,7 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               validations={{
                 required: "Name is required",
                 pattern: {
-                  value: /^[A-Za-z]+$/,
+                  value: /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/,
                   message: "Name should not contain numbers",
                 },
               }}
@@ -70,7 +70,7 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               validations={{
                 required: "Email is required",
                 pattern: {
-                  value: /^[\w\.-]+@[a-z]+\.[a-z]{2,}$/,
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: "Enter valid email address eg.demo@gmail.com",
                 },
               }}
@@ -81,6 +81,9 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               placeholder="Gender"
               name="gender"
               selectOptions={selectGender}
+              validations={{
+                required: "Gender is required",
+              }}
             />
             <Input
               type="text"
@@ -88,6 +91,9 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
               register={register}
               error={errors?.status}
               placeholder="Status"
+              validations={{
+                required: "Status is required",
+              }}
             />
           </div>
 
