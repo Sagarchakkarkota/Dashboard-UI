@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsModal, setMembers } from "src/Pages/Dashboard/Home/MemberSlice";
@@ -15,6 +15,7 @@ const AddMemberModal = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isModal = useSelector((state) => state.member.isModal);
+
   const [selectedPerson, setSelectedPerson] = useState(selectGender[0]);
 
   const mutation = useMutation({
@@ -34,6 +35,7 @@ const AddMemberModal = () => {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -46,7 +48,6 @@ const AddMemberModal = () => {
   });
 
   const onSubmit = (values) => {
-    console.log(values);
     // const newValue = { ...values, gender: selectedPerson.value };
     const { id, name, email, gender, status } = values;
     mutation.mutate({
@@ -83,22 +84,18 @@ const AddMemberModal = () => {
                 },
               }}
             />
-
-            <SelectListBox
-              options={selectGender}
-              selectedPerson={selectedPerson}
-              setSelectedPerson={setSelectedPerson}
-              register={register}
+            <Controller
+              control={control}
               name="gender"
-              errors={errors}
-              setValue={setValue}
+              rules={{ required: "Gender is require" }}
+              render={({ field }) => (
+                <SelectListBox
+                  field={field}
+                  options={selectGender}
+                  error={errors?.gender}
+                />
+              )}
             />
-
-            {errors?.gender && (
-              <p className="text-red-600 px-1 text-xs">
-                {errors?.gender?.message}
-              </p>
-            )}
 
             <Input
               type="text"
@@ -114,28 +111,6 @@ const AddMemberModal = () => {
                 },
               }}
             />
-            {/* <select
-              type="select"
-              className="border p-2 border-black rounded-md w-full"
-              {...register("gender", { required: "Gender is required" })}
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select Gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select> */}
-            {/* <Select
-              register={register}
-              error={errors?.gender}
-              placeholder="Gender"
-              name="gender"
-              selectOptions={selectGender}
-              validations={{
-                required: "Gender is required",
-              }}
-            /> */}
 
             <Input
               type="text"

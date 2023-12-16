@@ -1,16 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Modal from "src/components/modal";
 import Input from "../../../../../../../../../UI/input/Index";
 import { editMember } from "../../../../../../../../../lib/axios/apiServices/goRestQuery/goRestQuery";
 import Select from "src/UI/select";
 import { selectGender } from "./utility";
+import { Listbox, Transition } from "@headlessui/react";
+import SelectListBox from "src/components/selectListBox";
 
 export default function EditModal({ isOpen, setIsOpen, value }) {
   const { id, name, email, gender, status } = value;
   const queryClient = useQueryClient();
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -75,15 +78,17 @@ export default function EditModal({ isOpen, setIsOpen, value }) {
                 },
               }}
             />
-            <Select
-              register={register}
-              error={errors?.gender}
-              placeholder="Gender"
+            <Controller
+              control={control}
               name="gender"
-              selectOptions={selectGender}
-              validations={{
-                required: "Gender is required",
-              }}
+              rules={{ required: "Gender is require" }}
+              render={({ field }) => (
+                <SelectListBox
+                  field={field}
+                  options={selectGender}
+                  error={errors?.gender}
+                />
+              )}
             />
             <Input
               type="text"

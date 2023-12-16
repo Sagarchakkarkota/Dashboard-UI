@@ -7,17 +7,15 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import {
-  IoIosArrowDown,
-  IoIosArrowRoundBack,
-  IoIosArrowRoundForward,
-  IoIosArrowUp,
-} from "react-icons/io";
+import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import useGetTableDetails from "./hooks/useGetTableDetails";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import EditDelete from "./components/editDelete";
 import SearchBar from "./components/searchbar";
 import Table from "./components/tableComp";
+
 const UserPage = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
   const {
     sorting,
@@ -41,10 +39,11 @@ const UserPage = ({ updatedData, handleEdit, handleDelete, setIsOpen }) => {
       cell: ({ row }) => {
         return (
           <div className="flex jutify-center items-center pr-4">
-            <img
+            <LazyLoadImage
               src={row.original.photo}
               className="h-8 w-8 rounded-2xl pr-1"
-              alt="User"
+              alt="User not found"
+              effect="blur"
             />
             <div>{row.original.name}</div>
           </div>

@@ -11,6 +11,7 @@ export default function UseForm({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: defaultValues,
@@ -48,13 +49,7 @@ export default function UseForm({
                 },
               }}
             />
-            {/* <Input
-              type="file"
-              name="username"
-              register={register}
-              error={errors?.username}
-              placeholder="Username"
-            /> */}
+
             <label htmlFor="photo">Profile Picture</label>
             <input
               type="file"

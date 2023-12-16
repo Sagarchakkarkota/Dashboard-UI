@@ -1,13 +1,16 @@
 import { Disclosure } from "@headlessui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BiLogIn } from "react-icons/bi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
+import { pages } from "src/utility/utility";
 import profilepic from "../../../assets/profile.jpg";
 import useGetUser from "../../../customHooks/useGetUser";
 import useLogOut from "../../../customHooks/useLogOut";
-import { pages } from "src/utility/utility";
+
 const SideBarComp = ({ setShowSideBar, showSideBar }) => {
   const [listitems, setListitems] = useState(pages);
 
@@ -99,7 +102,12 @@ const SideBarComp = ({ setShowSideBar, showSideBar }) => {
       <div className="w-full">
         <div>
           <div className="w-full flex justify-center py-2">
-            <img className="rounded-[30px]" src={profilepic} alt="" />
+            <LazyLoadImage
+              className="rounded-[30px]"
+              src={profilepic}
+              alt="Image not found"
+              effect="blur"
+            />
           </div>
           <h1 className="w-full flex justify-center text-md font-bold ">
             {userData?.name}

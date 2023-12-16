@@ -1,5 +1,4 @@
 export const selectGender = [
-  { value: "", title: "Select Gender" },
-  { value: "male", title: "Male" },
-  { value: "female", title: "Female" },
+  { value: "male", name: "Male" },
+  { value: "female", name: "Female" },
 ];

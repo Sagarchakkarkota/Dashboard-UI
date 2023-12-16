@@ -1,10 +1,6 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import Input from "src/UI/input/Index";
-import Modal from "src/components/modal";
-import * as yup from "yup";
 import UseForm from "../components/userForm";
+import Toast from "src/UI/toast";
 
 export default function EditUserForm({
   editmodalShow,
@@ -13,28 +9,44 @@ export default function EditUserForm({
   setUpdatedData,
   editValue,
 }) {
-  const { id, name, email, phone, username, website } = editValue || {};
+  const { id, photo, name, email, phone, username, website } = editValue || {};
 
   function closeModal() {
     setEditmodalShow(false);
   }
 
   const defaultValues = {
+    photo: "",
     name: name,
     email: email,
     phone: phone,
     username: username,
     website: website,
   };
-  const onSubmit = (value) => {
+
+  const photoUrlConverter = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const photoReader = reader.result;
+        resolve(photoReader);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const onSubmit = async (value) => {
+    if (value.photo[0]) {
+      const photoUrl = await photoUrlConverter(value.photo[0]);
+
+      value = { ...value, photo: photoUrl };
+    }
     const index = updatedData?.findIndex((dataItem) => dataItem.id === id);
     const updatedUsers = [...updatedData];
     updatedUsers.splice(index, 1, value);
     setUpdatedData(updatedUsers);
-    toast.success("Edited User Successfully", {
-      duration: 4000,
-      position: "bottom-right",
-    });
+    toast.success(<Toast message={"Edited User Successfully"} />);
     closeModal();
   };
 
